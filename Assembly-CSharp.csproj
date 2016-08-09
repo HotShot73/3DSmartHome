@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{BDBCE7D3-139D-3EDB-816D-FB1D73476D25}</ProjectGuid>
+    <ProjectGuid>{36A61513-D513-0387-5C42-85B4130942CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,8 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ُScripts\AirConditionerOffButton.cs" />
+     <Compile Include="Assets\ُScripts\AirConditionerOnButton.cs" />
      <Compile Include="Assets\ُScripts\DownarrowButton.cs" />
      <Compile Include="Assets\ُScripts\FanButtonShow.cs" />
+     <Compile Include="Assets\ُScripts\JalousieOffButton.cs" />
+     <Compile Include="Assets\ُScripts\JalousieOnButton.cs" />
      <Compile Include="Assets\ُScripts\LeftarrowButton.cs" />
      <Compile Include="Assets\ُScripts\LightOffButton.cs" />
      <Compile Include="Assets\ُScripts\LightOnButton.cs" />
@@ -57,6 +61,8 @@
      <Compile Include="Assets\ُScripts\Scenarios.cs" />
      <Compile Include="Assets\ُScripts\Server.cs" />
      <Compile Include="Assets\ُScripts\TVAudio.cs" />
+     <Compile Include="Assets\ُScripts\TVOffButton.cs" />
+     <Compile Include="Assets\ُScripts\TVOnButton.cs" />
      <Compile Include="Assets\ُScripts\TextOutline.cs" />
      <Compile Include="Assets\ُScripts\UPArrowkey.cs" />
      <Compile Include="Assets\ُScripts\changeCemraview.cs" />
@@ -71,7 +77,7 @@
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Lighted.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>D:/Development/Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>D:/Development/3DSmartHome/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -82,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{C65DF7E6-5082-3454-2A7F-EDDBED1731B5}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{BC3AFC44-C7F3-331A-DE52-91009DC95A3F}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

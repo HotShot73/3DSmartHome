@@ -16,7 +16,11 @@ var UIButtonclicked : boolean;
 var UIBackgroundImage : GameObject;
 var AirConButton : GameObject;
 var AirConOnButton :GameObject;
+var JalousieButton : GameObject;
+var JalousieOnButton : GameObject;
+var JalousieOffButton : GameObject;
 var AirConOffButton : GameObject;
+var UIOn : boolean = false;
 UIButtonclicked = false; 
 var UI: GameObject;
 var UIanimator: Animator;
@@ -24,21 +28,33 @@ UIanimator=UI.GetComponent(Animator);
 
 
 function UIbuttonclicked () {
-
-	if (UILevel==1 && (!UIButtonclicked) )
+	print(UILevel);
+	if ((!UIButtonclicked) )
 	{
-	
-		//FanButton.SetActive(true);
+		
+
 		AirConButton.SetActive(true);
 		TVButton.SetActive(true);
 		BackButton.SetActive(true);
 		LightButton.SetActive(true);
+		JalousieButton.SetActive(true);
+
+		//FanButton.SetActive(true);
+
 		//UIBackgroundImage.SetActive(true);
 		UIButtonclicked=true;
 		UIanimator.SetTrigger("Up");
 	}
-	else if (UILevel==1 &&  (UIButtonclicked) )
+	else if ((UIButtonclicked) )
 	{ 
+	TVOnButton.SetActive(false);
+		TVOffButton.SetActive(false);
+		FanOnButton.SetActive(false);
+		FanOffButton.SetActive(false);
+		LightOnButton.SetActive(false);
+		LightOnButton.SetActive(false);
+		JalousieOnButton.SetActive(false);
+		JalousieOffButton.SetActive(false);
 		//LightButton.SetActive(false);
 		//TVButton.SetActive(false);
 		//AirConButton.SetActive(false);
@@ -50,84 +66,5 @@ function UIbuttonclicked () {
 		UIButtonclicked=false;
 		
 	}
-	else if (UILevel==21 && (!UIButtonclicked))//if it is in tv setting
-	{
-		TVOffButton.SetActive(true);
-		TVOnButton.SetActive(true);
-		TVButton.SetActive(true);
-		BackButton.SetActive(true);
-		//UIBackgroundImage.SetActive(true);
-		UIButtonclicked=true;
-		
-	}
-	else if (UILevel==21 && (UIButtonclicked))
-	{
-		//TVOffButton.SetActive(false);
-		//TVOnButton.SetActive(false);
-		//TVButton.SetActive(false);
-		//BackButton.SetActive(false);
-		//UIBackgroundImage.SetActive(false);
-		UIButtonclicked=false;
-		UIanimator.SetTrigger("down");
-	}
-	else if (UILevel==22 && (!UIButtonclicked))//if it is in fan setting
-	{
-		FanOffButton.SetActive(true);
-		FanOnButton.SetActive(true);
-		FanButton.SetActive(true);
-		BackButton.SetActive(true);
-		//UIBackgroundImage.SetActive(true);
-		UIButtonclicked=true;
-		
-	}
-	else if (UILevel==22 && (UIButtonclicked))
-	{
-	//	FanOffButton.SetActive(false);
-	//	FanOnButton.SetActive(false);
-	//	FanButton.SetActive(false);
-	//	BackButton.SetActive(false);
-		UIBackgroundImage.SetActive(false);
-		UIButtonclicked=false;
-		UIanimator.SetTrigger("down");
-	}
-		else if (UILevel==23 && (!UIButtonclicked))//if it is in light setting
-	{
-		LightOffButton.SetActive(true);
-		LightOnButton.SetActive(true);
-		LightButton.SetActive(true);
-		BackButton.SetActive(true);
-		//UIBackgroundImage.SetActive(true);
-		UIButtonclicked=true;
-		
-	}
-	else if (UILevel==23 && (UIButtonclicked))
-	{
-		//LightOffButton.SetActive(false);
-		//LightOnButton.SetActive(false);
-		//LightButton.SetActive(false);
-		///BackButton.SetActive(false);
-		//UIBackgroundImage.SetActive(false);
-		UIButtonclicked=false;
-		UIanimator.SetTrigger("down");
-	}
-	else if (UILevel==24 && (!UIButtonclicked))//if it is in AirCon Setting
-	{
-		AirConOnButton.SetActive(true);
-		AirConOffButton.SetActive(true);
-		AirConButton.SetActive(true);
-		BackButton.SetActive(true);
-		//UIBackgroundImage.SetActive(true);
-		UIButtonclicked=true;
-		
-	}
-	else if (UILevel==24 && (UIButtonclicked))
-	{
-		//AirConOnButton.SetActive(false);
-		//AirConOffButton.SetActive(false);
-		//AirConButton.SetActive(false);
-		//BackButton.SetActive(false);
-		UIBackgroundImage.SetActive(false);
-		UIButtonclicked=false;
-		UIanimator.SetTrigger("down");
-	}
+
 }

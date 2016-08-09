@@ -18,8 +18,8 @@ public class LightOffButton : MonoBehaviour {
 		light1b.SetActive (false);
 		light2a.SetActive (false);
 		light2b.SetActive (false);
-		timeLightIsOn = 0;
-		lightIsOn = false;
+		Scenarios.timeLightIsOn = 0;
+		Scenarios.lightIsOn = false;
 	}
 	// Update is called once per frame
 	void Update () {
