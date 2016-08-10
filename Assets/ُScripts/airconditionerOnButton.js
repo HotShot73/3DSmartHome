@@ -35,7 +35,8 @@ var sounds= GetComponents(AudioSource);
 
 
 function OnButtonClicked () 
-{	FirstPerson.transform.LookAt(AirConditioner.transform);
+{	
+	FirstPerson.transform.LookAt(AirConditioner.transform);
 	GetComponent.<AudioSource>().PlayOneShot(lightsound);
 	airconditioner.gameObject.SetActive(true);
 	AirConditioner.GetComponent(AudioSource).GetComponent.<AudioSource>().Play();

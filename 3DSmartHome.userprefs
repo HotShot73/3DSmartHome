@@ -1,13 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ُScripts\AirConButtonClicked.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ُScripts\Scenarios.cs">
     <Files>
-      <File FileName="Assets\ُScripts\Scenarios.cs" Line="12" Column="33" />
-      <File FileName="Assets\ُScripts\airconditionerOnButton.js" Line="42" Column="79" />
-      <File FileName="Assets\ُScripts\LightOnButton.cs" Line="20" Column="12" />
-      <File FileName="Assets\ُScripts\AirConditionerOffButton.cs" Line="19" Column="2" />
-      <File FileName="Assets\ُScripts\AirConditionerOnButton.cs" Line="20" Column="55" />
+      <File FileName="Assets\ُScripts\Scenarios.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\airconditionerOnButton.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\LightOnButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\AirConditionerOffButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\AirConditionerOnButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\TVButton.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\TVAudio.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\TVOffButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\TVOnButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\LightButtonClicked.js" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\AirConButtonClicked.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\UIButton.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\BackButton.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\room1autolight.js" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\JalousieOnButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\JalousieOffButton.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

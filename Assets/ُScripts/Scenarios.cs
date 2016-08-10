@@ -28,6 +28,7 @@ public class Scenarios : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
 		//print (scenarioNumber);
 		if (scenarioNumber == "1") {
 			//Scenario1 ();
@@ -123,6 +124,113 @@ public class Scenarios : MonoBehaviour {
 				else
 					message.text = "";
 			}
+		}
+		if (scenarioNumber == "4") {
+			if (myTimer < -0.9f)
+				myTimer = 7;
+			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			if (myTimer <= 0) {
+				if (lightIsOn && TVIsOn && airConditionerIsOn) {
+					message.text = "The electricity usage is so high right now";
+					duration = 4;
+					myTimer = 7;
+				}
+				if ((lightIsOn && TVIsOn && !airConditionerIsOn) || (lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && airConditionerIsOn)) {
+					message.text = "The electricity usage is high right now";
+					duration = 4;
+					myTimer = 7;
+				}
+				if ((lightIsOn && !TVIsOn && !airConditionerIsOn) || (!lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && !airConditionerIsOn)) {
+					message.text = "The electricity usage is low right now";
+					duration = 4;
+					myTimer = 7;
+				}
+				if ((!lightIsOn && !TVIsOn && !airConditionerIsOn)) {
+					message.text = "The electricity usage is nearly zero right now";
+					duration = 4;
+					myTimer = 7;
+				}
+			} else
+				myTimer -= Time.deltaTime;
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "5") {
+			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			if (myTimer < -0.9f)
+				myTimer = 10;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				message.text = "The room is on fire!!! run away!!!";
+			}
+		}
+		if (scenarioNumber == "6") {
+			if (myTimer < -0.9f)
+				myTimer = 10;
+			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			if (myTimer <= 0) {
+				if (lightIsOn && TVIsOn && airConditionerIsOn) {
+					message.text = "The electricity usage is nearly zero right now";
+					duration = 5;
+
+				}
+				if ((lightIsOn && TVIsOn && !airConditionerIsOn) || (lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && airConditionerIsOn)) {
+					message.text = "The electricity usage is low right now";
+					duration = 4;
+
+				}
+				if ((lightIsOn && !TVIsOn && !airConditionerIsOn) || (!lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && !airConditionerIsOn)) {
+					message.text = "The electricity usage is high right now!";
+					duration = 4;
+
+				}
+				if ((!lightIsOn && !TVIsOn && !airConditionerIsOn)) {
+					message.text = "The electricity usage is very high right now!";
+					duration = 4;
+
+				}
+			} else
+				myTimer -= Time.deltaTime;
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "7") {
+			if (myTimer < -0.9f)
+				myTimer = 8;
+			if (myTimer <= 0) {
+				if (!windowIsOpen) {
+					message.text = " Windows are open and this will cause in waste of energy.";
+					myTimer = 8;
+					duration = 5;
+				}
+			}
+			else
+				myTimer -= Time.deltaTime;
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "8") {
+			
+			if (myTimer < -0.9f)
+				myTimer = 8;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				message.text = "The room is on fire!!! run away!!!";
+				myTimer = 8;
+				duration = 4;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
 		}
 		totalTimer += Time.deltaTime;
 	}

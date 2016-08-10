@@ -48,11 +48,12 @@ function UIbuttonclicked () {
 	else if ((UIButtonclicked) )
 	{ 
 	TVOnButton.SetActive(false);
+		TVOnButton.SetActive(false);
 		TVOffButton.SetActive(false);
 		FanOnButton.SetActive(false);
 		FanOffButton.SetActive(false);
 		LightOnButton.SetActive(false);
-		LightOnButton.SetActive(false);
+		LightOffButton.SetActive(false);
 		JalousieOnButton.SetActive(false);
 		JalousieOffButton.SetActive(false);
 		//LightButton.SetActive(false);
