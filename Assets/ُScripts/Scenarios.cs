@@ -20,6 +20,10 @@ public class Scenarios : MonoBehaviour {
 	public static float timeAirConditionerIsOn = 0;
 	public static float timeLightIsOn = 0;
 	public static float timeJalousieIsOn =0;
+	private bool done1 = false;
+	private bool done2 = false;
+	private bool done3 = false;
+
 	private int counter=0;
 	// Use this for initialization
 	void Start () {
@@ -226,6 +230,84 @@ public class Scenarios : MonoBehaviour {
 				message.text = "The room is on fire!!! run away!!!";
 				myTimer = 8;
 				duration = 4;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "9") {
+			if (myTimer < -0.9f)
+				myTimer = 10;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				float totalUsage = 0;
+				if (TVIsOn)
+					totalUsage += 100;
+				if (airConditionerIsOn)
+					totalUsage += 150;
+				if (lightIsOn)
+					totalUsage += 100;
+				message.text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				duration = 4;
+				myTimer = -1;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "10") {
+			if (TVIsOn && counter==0) {
+				message.text = "The systems suggests you to close the window and turn off some of the lights";
+				duration = 4;
+				counter = 1;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+			if (!TVIsOn)
+				counter = 0;
+		}
+		if (scenarioNumber == "11") {
+			if (myTimer < -0.9f)
+				myTimer = 8;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				float totalUsage = 0;
+				if (TVIsOn)
+					totalUsage += 100;
+				if (airConditionerIsOn)
+					totalUsage += 150;
+				if (lightIsOn)
+					totalUsage += 100;
+				message.text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				duration = 4;
+				myTimer = 8;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "12") {
+			if (lightIsOn && duration<1.2f) {
+				message.text = "System suggests you to turn off the lights since it's day and the light level is quite alright";
+				duration = 4;
+				done1 = true;
+			}
+			if (airConditionerIsOn && duration<1.2f) {
+				message.text = "System suggests you to turn off the air conditioner since the temperature is pleasant.";
+				duration = 4;
+				done1 = true;
+			}
+			if (windowIsOpen && duration<1.2f) {
+				message.text = "System suggests you to close the window in order to prevent wasting of energy.";
+				duration = 4;
+				done1 = true;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
