@@ -384,7 +384,7 @@ public class Scenarios : MonoBehaviour {
 		}
 		if (scenarioNumber == "17") {
 			if (myTimer == -1)
-				myTimer = 8;
+				myTimer = 13;
 			if (myTimer > 0)
 				myTimer -= Time.deltaTime;
 			else{
@@ -394,6 +394,16 @@ public class Scenarios : MonoBehaviour {
 				}
 				}
 			GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
+		}
+		if (scenarioNumber == "18") {
+			
+			if (TVIsOn && airConditionerIsOn) {
+				if (counter == 0) {
+					messageContainer.SetActive (true);
+					counter = 1;
+				}
+				GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
+			}
 		}
 		totalTimer += Time.deltaTime;
 	}

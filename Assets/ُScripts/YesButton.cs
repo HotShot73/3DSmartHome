@@ -6,6 +6,8 @@ public class YesButton : MonoBehaviour {
 	public GameObject light2a;
 	public GameObject light2b;
 	public GameObject light1b;
+	public ParticleSystem airconditioner;
+	public GameObject AirConditioner;
 	public GameObject messageContainer;
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,13 @@ public class YesButton : MonoBehaviour {
 			light2b.SetActive (true);
 			Scenarios.timeLightIsOn = 0;
 			Scenarios.lightIsOn = true;
+			messageContainer.SetActive (false);
+		}
+		if (Scenarios.scenarioNumber == "18") {
+			airconditioner.gameObject.SetActive(false);
+			AirConditioner.GetComponent<AudioSource>().Stop();
+			Scenarios.airConditionerIsOn = false;
+			Scenarios.timeAirConditionerIsOn = 0;
 			messageContainer.SetActive (false);
 		}
 	}

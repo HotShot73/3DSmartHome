@@ -30,6 +30,9 @@ public class noteCS : MonoBehaviour {
 			if (Scenarios.scenarioNumber == "16") {
 				noteText.text = "Do below tasks in orders:\n 1- Enter the house\n 2- Use UI to turn on the lights\n 3- Use UI to turn off the lights";
 			}
+			if (Scenarios.scenarioNumber == "18") {
+				noteText.text = "Do below tasks in orders:\n 1- Enter the house\n 2- Use UI to turn on the Air Conditioner\n 3- Use UI to turn on the TV";
+			}
 			//noteOutlineText.text= "Do below tasks in orders:\n 1- Enter the house\n 2- Use UI to turn on the lights\n 3- Use UI to turn on the airconditioner \n 4- Use UI to turn on the TV";
 			noteShown= true;
 			
