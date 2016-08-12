@@ -23,7 +23,7 @@ public class Scenarios : MonoBehaviour {
 	private bool done1 = false;
 	private bool done2 = false;
 	private bool done3 = false;
-
+	private bool temp = false;
 	private int counter=0;
 	// Use this for initialization
 	void Start () {
@@ -313,6 +313,31 @@ public class Scenarios : MonoBehaviour {
 				duration -= Time.deltaTime;
 			else
 				message.text = "";
+		}
+		if (scenarioNumber == "13") {
+			if (lightIsOn)
+				temp = true;
+			if (!lightIsOn && temp) {
+				message.text = "If you don't turn off the lights you will use 8KWh more electricity monthly.";
+				duration = 5;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "14") {
+			if (airConditionerIsOn) {
+				message.text = "Systems suggests you to turn the air conditioner on";
+				duration = 5;
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else
+				message.text = "";
+		}
+		if (scenarioNumber == "15") {
+			
 		}
 		totalTimer += Time.deltaTime;
 	}
