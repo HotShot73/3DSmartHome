@@ -20,6 +20,7 @@ public class Scenarios : MonoBehaviour {
 	public static float timeAirConditionerIsOn = 0;
 	public static float timeLightIsOn = 0;
 	public static float timeJalousieIsOn =0;
+	public GameObject messageContainer;
 	private bool done1 = false;
 	private bool done2 = false;
 	private bool done3 = false;
@@ -27,7 +28,7 @@ public class Scenarios : MonoBehaviour {
 	private int counter=0;
 	// Use this for initialization
 	void Start () {
-	
+		myTimer = -1;
 	}
 	
 	// Update is called once per frame
@@ -337,7 +338,62 @@ public class Scenarios : MonoBehaviour {
 				message.text = "";
 		}
 		if (scenarioNumber == "15") {
-			
+			if (lightIsOn) {
+				if (myTimer <= 0) {
+					message.text = " System suggests you to turn on the lights";
+					duration = 4;
+					myTimer = 5;
+					counter = 1;
+				} else
+					myTimer -= Time.deltaTime;
+			}
+			if (duration > 0) {
+				duration -= Time.deltaTime;
+				counter = 2;
+			}
+			else {
+				message.text = "";
+				duration = 6;
+				if(counter!=0)
+				myTimer = 5;
+			}
+		}
+		if (scenarioNumber == "16") {
+			if (!lightIsOn && temp) {
+				if (myTimer <= 0) {
+					message.text = " System suggests you to turn off the lights";
+					duration = 4;
+					myTimer = 5;
+					counter = 1;
+				} else
+					myTimer -= Time.deltaTime;
+			}
+			if (lightIsOn) {
+				temp = true;;
+			}
+			if (duration > 0) {
+				duration -= Time.deltaTime;
+				counter = 2;
+			}
+			else {
+				message.text = "";
+				duration = 6;
+				if(counter!=0)
+					myTimer = 5;
+			}
+		}
+		if (scenarioNumber == "17") {
+			if (myTimer == -1)
+				myTimer = 8;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else{
+				if (counter == 0) {
+					messageContainer.SetActive (true);
+					counter = 1;
+				}
+				}
+			GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
 		}
 		totalTimer += Time.deltaTime;
 	}
