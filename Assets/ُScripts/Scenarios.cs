@@ -15,11 +15,13 @@ public class Scenarios : MonoBehaviour {
 	public static bool TVIsOn = false;
 	public static bool lightIsOn = false;
 	public static bool jalousieIsOn = false;
+	public static bool fanIsOn = false;
 	public static float timeWindowIsOpen =0;
 	public static float timeTVIsOn = 0;
 	public static float timeAirConditionerIsOn = 0;
 	public static float timeLightIsOn = 0;
 	public static float timeJalousieIsOn =0;
+	public static float timeFanIsOn =0;
 	public GameObject messageContainer;
 	private bool done1 = false;
 	private bool done2 = false;
@@ -45,6 +47,9 @@ public class Scenarios : MonoBehaviour {
 		}
 		if (TVIsOn) {
 			timeTVIsOn += Time.deltaTime;
+		}
+		if (fanIsOn) {
+			timeFanIsOn += Time.deltaTime;
 		}
 		message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
 		//print (scenarioNumber);
@@ -453,7 +458,7 @@ public class Scenarios : MonoBehaviour {
 		}
 		if (scenarioNumber == "20") {
 			if (myTimer == -1)
-				myTimer = 5;
+				myTimer = 13;
 			if (myTimer <= 0) {
 				if (counter == 0) {
 					messageContainer.SetActive (true);
@@ -479,6 +484,39 @@ public class Scenarios : MonoBehaviour {
 			} else
 				if(!isMessageContainerActive)
 					myTimer -= Time.deltaTime;
+		}
+		if (scenarioNumber == "21") {
+			if (myTimer == -1)
+				myTimer = 5;
+			if (lightIsOn) {
+				if (myTimer > 0)
+					myTimer -= Time.deltaTime;
+				else {
+					messageContainer.SetActive (true);
+					isMessageContainerActive = true;
+					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "The light level is quite sufficient. Shall I turn off the lights?";
+					myTimer = 8;
+					counter++;
+				}
+			}
+		}
+		if (scenarioNumber == "22") {
+			if (myTimer == -1)
+				myTimer = 5;
+			if (airConditionerIsOn) {
+				if (myTimer > 0)
+					myTimer -= Time.deltaTime;
+				else {
+					messageContainer.SetActive (true);
+					isMessageContainerActive = true;
+					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "The temperature is quite pleasant. Shall I turn the Air Conditioner off?";
+					myTimer = 8;
+					counter++;
+				}
+			}
+		}
+		if (scenarioNumber == "23") {
+			
 		}
 		totalTimer += Time.deltaTime;
 	}

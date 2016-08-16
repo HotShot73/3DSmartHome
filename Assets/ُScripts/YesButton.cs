@@ -71,7 +71,7 @@ public class YesButton : MonoBehaviour {
 			}
 			if (Scenarios.counter == 2) {
 				airconditioner.gameObject.SetActive(true);
-				AirConditioner.GetComponent<AudioSource>().Stop();
+				AirConditioner.GetComponent<AudioSource>().Play();
 				Scenarios.airConditionerIsOn = true;
 				Scenarios.timeAirConditionerIsOn = 0;
 				messageContainer.SetActive (false);
@@ -84,6 +84,22 @@ public class YesButton : MonoBehaviour {
 				Scenarios.jalousieIsOn = false;
 				Scenarios.timeJalousieIsOn = 0;
 			}	
+		}
+		if (Scenarios.scenarioNumber == "21") {
+			light1a.SetActive (false);
+			light1b.SetActive (false);
+			light2a.SetActive (false);
+			light2b.SetActive (false);
+			Scenarios.timeLightIsOn = 0;
+			Scenarios.lightIsOn = false;
+			messageContainer.SetActive (false);
+		}
+		if (Scenarios.scenarioNumber == "22") {
+			airconditioner.gameObject.SetActive(false);
+			AirConditioner.GetComponent<AudioSource>().Stop();
+			Scenarios.airConditionerIsOn = false;
+			Scenarios.timeAirConditionerIsOn = 0;
+			messageContainer.SetActive (false);
 		}
 	}
 	// Update is called once per frame

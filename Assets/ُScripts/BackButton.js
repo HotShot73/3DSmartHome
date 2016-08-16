@@ -33,6 +33,7 @@ function BackButtonClicked () {
 		AirConButton.SetActive(true);
 		BackButton.SetActive(true);
 		JalousieButton.SetActive(true);
+		FanButton.SetActive(true);
 		TVOffButton.SetActive(false);
 		TVOnButton.SetActive(false);
 		FanOnButton.SetActive(false);
@@ -41,6 +42,8 @@ function BackButtonClicked () {
 		LightOffButton.SetActive(false);
 		JalousieOnButton.SetActive(false);
 		JalousieOffButton.SetActive(false);
+		AirConOnButton.SetActive(false);
+		AirConOffButton.SetActive(false);
 		//UIanimator.SetTrigger("down");
 		//UIbutton.GetComponent(UIButton).UIButtonclicked=false;
 		//UIBackgroundImage.SetActive(false);

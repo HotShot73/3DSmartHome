@@ -49,6 +49,8 @@
      <Compile Include="Assets\ُScripts\AirConditionerOnButton.cs" />
      <Compile Include="Assets\ُScripts\DownarrowButton.cs" />
      <Compile Include="Assets\ُScripts\FanButtonShow.cs" />
+     <Compile Include="Assets\ُScripts\FanOffButton.cs" />
+     <Compile Include="Assets\ُScripts\FanOnButton.cs" />
      <Compile Include="Assets\ُScripts\JalousieOffButton.cs" />
      <Compile Include="Assets\ُScripts\JalousieOnButton.cs" />
      <Compile Include="Assets\ُScripts\LeftarrowButton.cs" />
