@@ -21,7 +21,6 @@ public class TVOnButton : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (Scenarios.TVIsOn)
-			Scenarios.timeTVIsOn += Time.deltaTime;
+		
 	}
 }

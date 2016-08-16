@@ -9,7 +9,8 @@ public class NoButton : MonoBehaviour {
 	
 	}
 	public void OnButtonClicked(){
-		GameObject.FindGameObjectsWithTag ("MessageContainer") [0].SetActive (false);
+		messageContainer.SetActive (false);
+		Scenarios.isMessageContainerActive = false;
 	}
 	// Update is called once per frame
 	void Update () {

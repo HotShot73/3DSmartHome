@@ -25,7 +25,8 @@ public class Scenarios : MonoBehaviour {
 	private bool done2 = false;
 	private bool done3 = false;
 	private bool temp = false;
-	private int counter=0;
+	public static int counter=0;
+	public static bool isMessageContainerActive=false;
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
@@ -33,6 +34,18 @@ public class Scenarios : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (airConditionerIsOn) {
+			timeAirConditionerIsOn += Time.deltaTime;
+		}
+		if (lightIsOn) {
+			timeLightIsOn += Time.deltaTime;
+		}
+		if (jalousieIsOn) {
+			timeJalousieIsOn += Time.deltaTime;
+		}
+		if (TVIsOn) {
+			timeTVIsOn += Time.deltaTime;
+		}
 		message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
 		//print (scenarioNumber);
 		if (scenarioNumber == "1") {
@@ -404,6 +417,68 @@ public class Scenarios : MonoBehaviour {
 				}
 				GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
 			}
+		}
+		if (scenarioNumber == "19") {
+			if (myTimer == -1)
+				myTimer = 5;
+			if (myTimer > 0 && TVIsOn && !isMessageContainerActive)
+				myTimer -= Time.deltaTime;
+			else {
+				if (TVIsOn) {
+					if (counter == 0) {
+						messageContainer.SetActive (true);
+						isMessageContainerActive = true;
+						GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn off the lights?";
+						myTimer = 8;
+						counter++;
+					} else {
+						if (counter == 1 && !isMessageContainerActive) {
+							messageContainer.SetActive (true);
+							isMessageContainerActive = true;
+							GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn off the Air Conditioner?";
+							myTimer = 8;
+							counter++;
+						} else {
+							if (counter == 2 && !isMessageContainerActive) {
+								messageContainer.SetActive (true);
+								isMessageContainerActive = true;
+								GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I close the windows?";
+								myTimer = 8;
+								counter++;
+							}
+						}
+					}
+				}
+			}
+		}
+		if (scenarioNumber == "20") {
+			if (myTimer == -1)
+				myTimer = 5;
+			if (myTimer <= 0) {
+				if (counter == 0) {
+					messageContainer.SetActive (true);
+					isMessageContainerActive = true;
+					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Weather is getting hot. Shall I turn on the fan?";
+					myTimer = 8;
+					counter++;
+				}
+				if (counter == 1 && !isMessageContainerActive) {
+					messageContainer.SetActive (true);
+					isMessageContainerActive = true;
+					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn on the Air Conditioner?";
+					myTimer = 8;
+					counter++;
+				}
+				if (counter == 2 && !isMessageContainerActive) {
+					messageContainer.SetActive (true);
+					isMessageContainerActive = true;
+					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "In order to save energy system suggests you to close the window. shall I close them?";
+					myTimer = 8;
+					counter++;
+				}
+			} else
+				if(!isMessageContainerActive)
+					myTimer -= Time.deltaTime;
 		}
 		totalTimer += Time.deltaTime;
 	}

@@ -29,7 +29,6 @@ public class JalousieOnButton : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (Scenarios.jalousieIsOn)
-			Scenarios.timeJalousieIsOn += Time.deltaTime;
+		
 	}
 }

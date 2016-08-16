@@ -16,8 +16,6 @@ public class AirConditionerOnButton : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (Scenarios.airConditionerIsOn) {
-			Scenarios.timeAirConditionerIsOn += Time.deltaTime;
-		}
+		
 	}
 }

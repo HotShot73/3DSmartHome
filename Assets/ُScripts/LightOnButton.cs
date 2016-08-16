@@ -21,7 +21,6 @@ public class LightOnButton : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (LightOffButton.lightIsOn)
-			LightOffButton.timeLightIsOn += Time.deltaTime;
+		
 	}
 }
