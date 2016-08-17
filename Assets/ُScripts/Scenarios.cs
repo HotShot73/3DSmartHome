@@ -29,6 +29,17 @@ public class Scenarios : MonoBehaviour {
 	private bool temp = false;
 	public static int counter=0;
 	public static bool isMessageContainerActive=false;
+	public GameObject light1a;
+	public GameObject light2a;
+	public GameObject light2b;
+	public GameObject light1b;
+	public ParticleSystem airconditioner;
+	public GameObject AirConditioner;
+	public AudioClip audioOn; 
+	public GameObject TV;
+	public GameObject jalousie1;
+	public GameObject jalousie2;
+	public GameObject fan;
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
@@ -226,7 +237,7 @@ public class Scenarios : MonoBehaviour {
 			if (myTimer < -0.9f)
 				myTimer = 8;
 			if (myTimer <= 0) {
-				if (!windowIsOpen) {
+				if (!jalousieIsOn) {
 					message.text = " Windows are open and this will cause in waste of energy.";
 					myTimer = 8;
 					duration = 5;
@@ -323,7 +334,7 @@ public class Scenarios : MonoBehaviour {
 				duration = 4;
 				done1 = true;
 			}
-			if (windowIsOpen && duration<1.2f) {
+			if (jalousieIsOn && duration<1.2f) {
 				message.text = "System suggests you to close the window in order to prevent wasting of energy.";
 				duration = 4;
 				done1 = true;
@@ -586,6 +597,54 @@ public class Scenarios : MonoBehaviour {
 					}
 				}
 			}
+		}
+		if (scenarioNumber == "25") {
+			if (myTimer == -1)
+				myTimer = 10;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				light1a.SetActive (true);
+				light1b.SetActive (true);
+				light2a.SetActive (true);
+				light2b.SetActive (true);
+				timeLightIsOn = 0;
+				lightIsOn = true;
+
+			}
+		}
+		if (scenarioNumber == "26") {
+			
+				if (myTimer == -1) {
+					myTimer = 5;
+					jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= 1;
+					jalousie1.GetComponent<Animation>().Play();
+					jalousie2.GetComponent<Animation>()["roller_half_up"].speed= 1;
+					jalousie2.GetComponent<Animation>().Play();
+					Scenarios.jalousieIsOn = true;
+					Scenarios.timeJalousieIsOn = 0;
+				}
+			if (!jalousieIsOn) {
+				if (myTimer > 0)
+					myTimer -= Time.deltaTime;
+				else {
+					airconditioner.gameObject.SetActive(true);
+					AirConditioner.GetComponent<AudioSource>().Play();
+					airConditionerIsOn = true;
+					timeAirConditionerIsOn = 0;
+					message.text = "It was getting warm after closing the windows so system decided to turn the Air Conditioner on";
+					duration = 6;
+				}
+			}
+			if (duration > 0) {
+				duration -= Time.deltaTime;
+			} else {
+				duration = 6;
+				message.text = "";
+			}
+		}
+		if (scenarioNumber == "27") {
+			
 		}
 		totalTimer += Time.deltaTime;
 	}

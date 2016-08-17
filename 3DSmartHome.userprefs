@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ُScripts\noteCS.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ُScripts\Scenarios.cs">
     <Files>
-      <File FileName="Assets\ُScripts\Scenarios.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\Scenarios.cs" Line="646" Column="32" />
       <File FileName="Assets\ُScripts\LightOnButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\AirConditionerOffButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\AirConditionerOnButton.cs" Line="1" Column="1" />
@@ -15,8 +15,8 @@
       <File FileName="Assets\ُScripts\UIButton.js" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\BackButton.js" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\JalousieOffButton.cs" Line="1" Column="1" />
-      <File FileName="Assets\ُScripts\noteCS.cs" Line="48" Column="4" />
-      <File FileName="Assets\ُScripts\YesButton.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\noteCS.cs" Line="55" Column="101" />
+      <File FileName="Assets\ُScripts\YesButton.cs" Line="61" Column="27" />
       <File FileName="Assets\ُScripts\JalousieOnButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\FanOnButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\FanOffButton.cs" Line="1" Column="1" />

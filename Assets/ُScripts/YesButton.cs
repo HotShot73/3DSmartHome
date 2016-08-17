@@ -60,6 +60,7 @@ public class YesButton : MonoBehaviour {
 				jalousie2.GetComponent<Animation>().Play();
 				Scenarios.jalousieIsOn = false;
 				Scenarios.timeJalousieIsOn = 0;
+				messageContainer.SetActive (false);
 			}
 
 		}
