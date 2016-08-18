@@ -40,6 +40,7 @@ public class Scenarios : MonoBehaviour {
 	public GameObject jalousie1;
 	public GameObject jalousie2;
 	public GameObject fan;
+	public GameObject TVOff;
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
@@ -644,7 +645,270 @@ public class Scenarios : MonoBehaviour {
 			}
 		}
 		if (scenarioNumber == "27") {
-			
+			if (myTimer == -1) 
+				myTimer = 5;
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				if (counter == 0) {
+					light1a.SetActive (true);
+					light1b.SetActive (true);
+					light2a.SetActive (true);
+					light2b.SetActive (true);
+					timeLightIsOn = 0;
+					duration = 5;
+					myTimer = 10;
+					message.text = "Light level is not enough therefore system decided to turn on the lights";
+					lightIsOn = true;
+					counter++;
+				} else {
+					if (counter == 1) {
+						TV.SetActive (true);
+						TVIsOn = true;
+						timeTVIsOn = 0;
+						duration = 5;
+						myTimer = 10;
+						message.text = "The match between FC Barcelona and Real Madrid starts in 5 minutes!";
+						counter++;
+					} else {
+						if (counter == 2) {
+							jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= 1;
+							jalousie1.GetComponent<Animation>().Play();
+							jalousie2.GetComponent<Animation>()["roller_half_up"].speed= 1;
+							jalousie2.GetComponent<Animation>().Play();
+							jalousieIsOn = true;
+							timeJalousieIsOn = 0;
+							duration = 5;
+							myTimer = 10;
+							message.text = "The weather is quite good outside therefore system decided to open the windows";
+							counter++;
+						}
+					}
+				}
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else {
+				message.text = "";
+			}
+		}
+		if (scenarioNumber == "28") {
+			if (myTimer == -1) {
+				myTimer = 5;
+				light1a.SetActive (true);
+				light1b.SetActive (true);
+				light2a.SetActive (true);
+				light2b.SetActive (true);
+				timeLightIsOn = 0;
+				lightIsOn = true;
+				jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= 1;
+				jalousie1.GetComponent<Animation>().Play();
+				jalousie2.GetComponent<Animation>()["roller_half_up"].speed= 1;
+				jalousie2.GetComponent<Animation>().Play();
+				jalousieIsOn = true;
+				timeJalousieIsOn = 0;
+			}
+			if (TVIsOn) {
+			if (myTimer > 0)
+				myTimer -= Time.deltaTime;
+			else {
+				
+					if (counter == 0) {
+						light1a.SetActive (false);
+						light1b.SetActive (false);
+						light2a.SetActive (false);
+						light2b.SetActive (false);
+						lightIsOn = false;
+						timeLightIsOn = 0;
+						duration = 5;
+						myTimer = 10;
+						if (!lightIsOn)
+							message.text = "System decided to turn off the lights for better movie watching experience";
+					
+						counter++;
+					} else {
+						if (counter == 1) {
+							airconditioner.gameObject.SetActive (true);
+							AirConditioner.GetComponent<AudioSource> ().Play ();
+							airConditionerIsOn = true;
+							timeAirConditionerIsOn = 0;
+							duration = 5;
+							myTimer = 10;
+							message.text = "The weather is getting warm therefore system turned the Air Conditioner on!";
+							counter++;
+						} else {
+							if (counter == 2) {
+								jalousie1.GetComponent<Animation> () ["roller1_half_up"].speed = -1;
+								jalousie1.GetComponent<Animation> ().Play ();
+								jalousie2.GetComponent<Animation> () ["roller_half_up"].speed = -1;
+								jalousie2.GetComponent<Animation> ().Play ();
+								jalousieIsOn = false;
+								timeJalousieIsOn = 0;
+								duration = 5;
+								myTimer = 10;
+								message.text = "It's quite noisy outside therefore system decided to close the windows";
+								counter++;
+							}
+						}
+					}
+				}
+				if (duration > 0)
+					duration -= Time.deltaTime;
+				else {
+					message.text = "";
+				}
+			}
+		}
+		if (scenarioNumber == "29") {
+			if (myTimer == -1) 
+				myTimer = 5;
+			if (lightIsOn) {
+				if (myTimer > 0)
+					myTimer -= Time.deltaTime;
+				else {
+					light1a.SetActive (false);
+					light1b.SetActive (false);
+					light2a.SetActive (false);
+					light2b.SetActive (false);
+					lightIsOn = false;
+					timeLightIsOn = 0;
+					duration = 5;
+					message.text = "Light level is quite sufficient therefore system decided to turn off the lights";
+				}
+				if (duration > 0)
+					duration -= Time.deltaTime;
+				else 	
+					message.text = "";
+			}
+		}
+		if (scenarioNumber == "30") {
+			if (myTimer == -1) 
+				myTimer = 5;
+			if (airConditionerIsOn) {
+				if (myTimer > 0)
+					myTimer -= Time.deltaTime;
+				else {
+					airconditioner.gameObject.SetActive (false);
+					AirConditioner.GetComponent<AudioSource> ().Stop ();
+					airConditionerIsOn = false;
+					timeAirConditionerIsOn = 0;
+					duration = 5;
+					message.text = "Weather is quite good. There is no need for Air Conditioner";
+
+				}
+				if (duration > 0)
+					duration -= Time.deltaTime;
+				else 	
+					message.text = "";
+			}
+		}
+		if (scenarioNumber == "31") {
+			if (lightIsOn && jalousieIsOn)
+				temp = true;
+			if (myTimer == -1) 
+				myTimer = 5;
+			if (myTimer > 0) {
+				if(temp)
+				myTimer -= Time.deltaTime;
+			}
+			else {
+
+				if (lightIsOn) {
+					light1a.SetActive (false);
+					light1b.SetActive (false);
+					light2a.SetActive (false);
+					light2b.SetActive (false);
+					lightIsOn = false;
+					timeLightIsOn = 0;
+					duration = 5;
+					myTimer = 10;
+					if (!lightIsOn)
+						message.text = "System decided to turn off the lights because the light level is quite sufficient";
+
+					counter++;
+				} else {
+					if (counter == 1) {
+						TV.SetActive (true);
+						TVIsOn = true;
+						timeTVIsOn = 0;
+						duration = 5;
+						myTimer = 10;
+						message.text = "Game of Thrones is on TV now!";
+						counter++;
+					} else {
+						if (counter == 2) {
+							jalousie1.GetComponent<Animation> () ["roller1_half_up"].speed = -1;
+							jalousie1.GetComponent<Animation> ().Play ();
+							jalousie2.GetComponent<Animation> () ["roller_half_up"].speed = -1;
+							jalousie2.GetComponent<Animation> ().Play ();
+							jalousieIsOn = false;
+							timeJalousieIsOn = 0;
+							duration = 5;
+							myTimer = 10;
+							message.text = "Weather is cold outside";
+							counter++;
+						}
+					}
+				}
+			}
+			if (duration > 0)
+				duration -= Time.deltaTime;
+			else {
+				message.text = "";
+			}
+		
+		}
+		if (scenarioNumber == "32") {
+			if (myTimer == -1) 
+				myTimer = 5;
+			if(TVIsOn){
+			if (myTimer > 0) {
+				
+					myTimer -= Time.deltaTime;
+			}
+
+			else {
+				
+					if (counter == 0) {
+						fan.GetComponent<Animation> ().Play ();
+					duration = 5;
+					myTimer = 10;
+						message.text = "Weather is getting warm so system decided to turn on the fan";
+
+					counter++;
+				} else {
+					if (counter == 1) {
+							jalousie1.GetComponent<Animation> () ["roller1_half_up"].speed = 1;
+							jalousie1.GetComponent<Animation> ().Play ();
+							jalousie2.GetComponent<Animation> () ["roller_half_up"].speed = 1;
+							jalousie2.GetComponent<Animation> ().Play ();
+							jalousieIsOn = true;
+							timeJalousieIsOn = 0;
+							duration = 5;
+							myTimer = 10;
+							message.text = "Weather is pleasant outside so system decided to open the windows.";
+							counter++;
+					} else {
+						if (counter == 2) {
+								TV.SetActive (false);
+								TVOff.SetActive (true);
+								TVIsOn = true;
+								timeTVIsOn = 0;
+								duration = 5;
+								myTimer = 10;
+								message.text = "You are using so much electricity so system decided to turn the tv off!";
+							counter++;
+						}
+					}
+				}
+
+			}
+				if (duration > 0)
+					duration -= Time.deltaTime;
+				else {
+					message.text = "";
+				}
+			}
 		}
 		totalTimer += Time.deltaTime;
 	}
