@@ -28,6 +28,7 @@ public class YesButton : MonoBehaviour {
 			Scenarios.timeLightIsOn = 0;
 			Scenarios.lightIsOn = true;
 			messageContainer.SetActive (false);
+			Scenarios.isMessageContainerActive = false;
 		}
 		if (Scenarios.scenarioNumber == "18") {
 			airconditioner.gameObject.SetActive(false);
@@ -35,9 +36,10 @@ public class YesButton : MonoBehaviour {
 			Scenarios.airConditionerIsOn = false;
 			Scenarios.timeAirConditionerIsOn = 0;
 			messageContainer.SetActive (false);
+			Scenarios.isMessageContainerActive = false;
 		}
 		if (Scenarios.scenarioNumber == "19") {
-			if (Scenarios.counter == 0) {
+			if (Scenarios.counter == 1) {
 				light1a.SetActive (false);
 				light1b.SetActive (false);
 				light2a.SetActive (false);
@@ -45,37 +47,15 @@ public class YesButton : MonoBehaviour {
 				Scenarios.timeLightIsOn = 0;
 				Scenarios.lightIsOn = false;
 				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
 			}
-			if (Scenarios.counter == 1) {
+			if (Scenarios.counter == 2) {
 				airconditioner.gameObject.SetActive(false);
 				AirConditioner.GetComponent<AudioSource>().Stop();
 				Scenarios.airConditionerIsOn = false;
 				Scenarios.timeAirConditionerIsOn = 0;
 				messageContainer.SetActive (false);
-			}
-			if (Scenarios.counter == 2) {
-				jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= -1;
-				jalousie1.GetComponent<Animation>().Play();
-				jalousie2.GetComponent<Animation>()["roller_half_up"].speed= -1;
-				jalousie2.GetComponent<Animation>().Play();
-				Scenarios.jalousieIsOn = false;
-				Scenarios.timeJalousieIsOn = 0;
-				messageContainer.SetActive (false);
-			}
-
-		}
-		if (Scenarios.scenarioNumber == "20") {
-			if (Scenarios.counter == 1) {
-				fan.GetComponent<Animation> ().Play ();
-				messageContainer.SetActive (false);
-
-			}
-			if (Scenarios.counter == 2) {
-				airconditioner.gameObject.SetActive(true);
-				AirConditioner.GetComponent<AudioSource>().Play();
-				Scenarios.airConditionerIsOn = true;
-				Scenarios.timeAirConditionerIsOn = 0;
-				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
 			}
 			if (Scenarios.counter == 3) {
 				jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= -1;
@@ -84,6 +64,35 @@ public class YesButton : MonoBehaviour {
 				jalousie2.GetComponent<Animation>().Play();
 				Scenarios.jalousieIsOn = false;
 				Scenarios.timeJalousieIsOn = 0;
+				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
+			}
+
+		}
+		if (Scenarios.scenarioNumber == "20") {
+			if (Scenarios.counter == 1) {
+				fan.GetComponent<Animation> ().Play ();
+				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
+
+			}
+			if (Scenarios.counter == 2) {
+				airconditioner.gameObject.SetActive(true);
+				AirConditioner.GetComponent<AudioSource>().Play();
+				Scenarios.airConditionerIsOn = true;
+				Scenarios.timeAirConditionerIsOn = 0;
+				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
+			}
+			if (Scenarios.counter == 3) {
+				jalousie1.GetComponent<Animation>()["roller1_half_up"].speed= -1;
+				jalousie1.GetComponent<Animation>().Play();
+				jalousie2.GetComponent<Animation>()["roller_half_up"].speed= -1;
+				jalousie2.GetComponent<Animation>().Play();
+				Scenarios.jalousieIsOn = false;
+				Scenarios.timeJalousieIsOn = 0;
+				messageContainer.SetActive (false);
+				Scenarios.isMessageContainerActive = false;
 			}	
 		}
 		if (Scenarios.scenarioNumber == "21") {
@@ -94,6 +103,7 @@ public class YesButton : MonoBehaviour {
 			Scenarios.timeLightIsOn = 0;
 			Scenarios.lightIsOn = false;
 			messageContainer.SetActive (false);
+			Scenarios.isMessageContainerActive = false;
 		}
 		if (Scenarios.scenarioNumber == "22") {
 			airconditioner.gameObject.SetActive(false);
@@ -101,6 +111,7 @@ public class YesButton : MonoBehaviour {
 			Scenarios.airConditionerIsOn = false;
 			Scenarios.timeAirConditionerIsOn = 0;
 			messageContainer.SetActive (false);
+			Scenarios.isMessageContainerActive = false;
 		}
 		if (Scenarios.scenarioNumber == "23") {
 			if (Scenarios.counter == 1) {

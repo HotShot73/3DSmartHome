@@ -23,6 +23,7 @@ public class Scenarios : MonoBehaviour {
 	public static float timeJalousieIsOn =0;
 	public static float timeFanIsOn =0;
 	public GameObject messageContainer;
+	public GameObject ActionMessage;
 	private bool done1 = false;
 	private bool done2 = false;
 	private bool done3 = false;
@@ -423,7 +424,7 @@ public class Scenarios : MonoBehaviour {
 					counter = 1;
 				}
 				}
-			GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
+			ActionMessage.GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
 		}
 		if (scenarioNumber == "18") {
 			
@@ -432,7 +433,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					counter = 1;
 				}
-				GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
+				ActionMessage.GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
 			}
 		}
 		if (scenarioNumber == "19") {
@@ -445,21 +446,21 @@ public class Scenarios : MonoBehaviour {
 					if (counter == 0) {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
-						GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn off the lights?";
+						ActionMessage.GetComponent<Text> ().text = "Shall I turn off the lights?";
 						myTimer = 8;
 						counter++;
 					} else {
 						if (counter == 1 && !isMessageContainerActive) {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
-							GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn off the Air Conditioner?";
+							ActionMessage.GetComponent<Text> ().text = "Shall I turn off the Air Conditioner?";
 							myTimer = 8;
 							counter++;
 						} else {
 							if (counter == 2 && !isMessageContainerActive) {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
-								GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I close the windows?";
+								ActionMessage.GetComponent<Text> ().text = "Shall I close the windows?";
 								myTimer = 8;
 								counter++;
 							}
@@ -475,21 +476,21 @@ public class Scenarios : MonoBehaviour {
 				if (counter == 0) {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Weather is getting hot. Shall I turn on the fan?";
+					ActionMessage.GetComponent<Text> ().text = "Weather is getting hot. Shall I turn on the fan?";
 					myTimer = 8;
 					counter++;
 				}
 				if (counter == 1 && !isMessageContainerActive) {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn on the Air Conditioner?";
+					ActionMessage.GetComponent<Text> ().text = "Shall I turn on the Air Conditioner?";
 					myTimer = 8;
 					counter++;
 				}
 				if (counter == 2 && !isMessageContainerActive) {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "In order to save energy system suggests you to close the window. shall I close them?";
+					ActionMessage.GetComponent<Text> ().text = "In order to save energy system suggests you to close the window. shall I close them?";
 					myTimer = 8;
 					counter++;
 				}
@@ -506,7 +507,7 @@ public class Scenarios : MonoBehaviour {
 				else {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "The light level is quite sufficient. Shall I turn off the lights?";
+					ActionMessage.GetComponent<Text> ().text = "The light level is quite sufficient. Shall I turn off the lights?";
 					myTimer = 8;
 					counter++;
 				}
@@ -521,7 +522,7 @@ public class Scenarios : MonoBehaviour {
 				else {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "The temperature is quite pleasant. Shall I turn the Air Conditioner off?";
+					ActionMessage.GetComponent<Text> ().text = "The temperature is quite pleasant. Shall I turn the Air Conditioner off?";
 					myTimer = 8;
 					counter++;
 				}
@@ -540,21 +541,21 @@ public class Scenarios : MonoBehaviour {
 					if (counter == 0) {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
-						GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I open the windows?";
+						ActionMessage.GetComponent<Text> ().text = "Shall I open the windows?";
 						myTimer = 8;
 						counter++;
 					} else {
 						if (counter == 1) {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
-							GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
+							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
 							myTimer = 8;
 							counter++;
 						} else {
 							if (counter == 2) {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
-								GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn the Fan on?";
+								ActionMessage.GetComponent<Text> ().text = "Shall I turn the Fan on?";
 								myTimer = 8;
 								counter++;
 							}
@@ -576,21 +577,21 @@ public class Scenarios : MonoBehaviour {
 					if (counter == 0) {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
-						GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn the fan on?";
+						ActionMessage.GetComponent<Text> ().text = "Shall I turn the fan on?";
 						myTimer = 8;
 						counter++;
 					} else {
 						if (counter == 1) {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
-							GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
+							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
 							myTimer = 8;
 							counter++;
 						} else {
 							if (counter == 2) {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
-								GameObject.FindGameObjectsWithTag ("ActionMessage") [0].GetComponent<Text> ().text = "Shall I turn the lights on?";
+								ActionMessage.GetComponent<Text> ().text = "Shall I turn the lights on?";
 								myTimer = 8;
 								counter++;
 							}
