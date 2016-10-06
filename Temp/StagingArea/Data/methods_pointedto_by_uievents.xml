@@ -1,0 +1,101 @@
+<linker>
+	<assembly fullname="Assembly-CSharp">
+		<type fullname="AirConditionerOnButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="FanOffButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="RightarrowButton">
+			<method name="notpressed"/>
+			<method name="pressed"/>
+			<method name="notpressed"/>
+			<method name="pressed"/>
+		</type>
+		<type fullname="noteCS">
+			<method name="NoteButtonClicked"/>
+		</type>
+		<type fullname="FanOnButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="NoButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="LeftarrowButton">
+			<method name="notpressed"/>
+			<method name="pressed"/>
+			<method name="notpressed"/>
+			<method name="pressed"/>
+		</type>
+		<type fullname="TVOffButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="JalousieOnButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="TVOnButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="LightOffButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="YesButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="DownarrowButton">
+			<method name="notpressed"/>
+			<method name="pressed"/>
+			<method name="notpressed"/>
+			<method name="pressed"/>
+		</type>
+		<type fullname="AirConditionerOffButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="LightOnButton">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="UPArrowkey">
+			<method name="notpressed"/>
+			<method name="pressed"/>
+			<method name="notpressed"/>
+			<method name="pressed"/>
+		</type>
+		<type fullname="JalousieOffButton">
+			<method name="OnButtonClicked"/>
+		</type>
+	</assembly>
+	<assembly fullname="Assembly-UnityScript">
+		<type fullname="LightButtonClicked">
+			<method name="LightButtonClicked"/>
+		</type>
+		<type fullname="cameraviewjs">
+			<method name="cameraViewBackButton"/>
+		</type>
+		<type fullname="BackButton">
+			<method name="BackButtonClicked"/>
+		</type>
+		<type fullname="TVButton">
+			<method name="TVButtonClicked"/>
+			<method name="TVButtonClicked"/>
+			<method name="TVButtonClicked"/>
+		</type>
+		<type fullname="FanButtonClicked">
+			<method name="FanButtonClicked"/>
+		</type>
+		<type fullname="FanOnButtonClicked">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="UIButton">
+			<method name="UIbuttonclicked"/>
+		</type>
+		<type fullname="Restart">
+			<method name="StartClicked"/>
+		</type>
+		<type fullname="FanOffButtonClicked">
+			<method name="OnButtonClicked"/>
+		</type>
+		<type fullname="AirConButtonClicked">
+			<method name="ButtonClicked"/>
+		</type>
+	</assembly>
+</linker>
