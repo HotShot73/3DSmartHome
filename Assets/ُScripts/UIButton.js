@@ -23,49 +23,27 @@ var AirConOffButton : GameObject;
 var UIOn : boolean = false;
 UIButtonclicked = false; 
 var UI: GameObject;
+var Button: GameObject;
+var thisButton: GameObject;
 var UIanimator: Animator;
 UIanimator=UI.GetComponent(Animator);
 
 
 function UIbuttonclicked () {
-	print(UILevel);
-	if ((!UIButtonclicked) )
-	{
-		
+	
 
 		AirConButton.SetActive(true);
 		TVButton.SetActive(true);
 		BackButton.SetActive(true);
 		LightButton.SetActive(true);
 		JalousieButton.SetActive(true);
-
+		Button.SetActive(true);
 		//FanButton.SetActive(true);
-
+		thisButton.SetActive(false);
 		//UIBackgroundImage.SetActive(true);
 		UIButtonclicked=true;
 		UIanimator.SetTrigger("Up");
-	}
-	else if ((UIButtonclicked) )
-	{ 
-	TVOnButton.SetActive(false);
-		TVOnButton.SetActive(false);
-		TVOffButton.SetActive(false);
-		FanOnButton.SetActive(false);
-		FanOffButton.SetActive(false);
-		LightOnButton.SetActive(false);
-		LightOffButton.SetActive(false);
-		JalousieOnButton.SetActive(false);
-		JalousieOffButton.SetActive(false);
-		//LightButton.SetActive(false);
-		//TVButton.SetActive(false);
-		//AirConButton.SetActive(false);
-		//FanButton.SetActive(false);
-		//BackButton.SetActive(false);
-		
-		//UIBackgroundImage.SetActive(false);
-		UIanimator.SetTrigger("down");
-		UIButtonclicked=false;
-		
-	}
+	
+
 
 }

@@ -59,6 +59,7 @@
      <Compile Include="Assets\ُScripts\LoadingScreen.cs" />
      <Compile Include="Assets\ُScripts\MainMenue2.cs" />
      <Compile Include="Assets\ُScripts\NoButton.cs" />
+     <Compile Include="Assets\ُScripts\NoteClose.cs" />
      <Compile Include="Assets\ُScripts\RightarrowButton.cs" />
      <Compile Include="Assets\ُScripts\ScenarioAssigner.cs" />
      <Compile Include="Assets\ُScripts\Scenarios.cs" />

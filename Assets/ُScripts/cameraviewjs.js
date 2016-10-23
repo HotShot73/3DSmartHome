@@ -17,10 +17,10 @@ function cameraview (){
 }
 
 function cameraViewBackButton(){
-	if(GameObject.Find("UI Button").GetComponent(UIButton).UILevel==1)
-	{
-		this.GetComponent.<Camera>().rect = new Rect(0,0,1,1);
-			UIButtonClicked= false;
-	}
+	//if(GameObject.Find("UI Button").GetComponent(UIButton).UILevel==1)
+	//{
+	//	this.GetComponent.<Camera>().rect = new Rect(0,0,1,1);
+	//		UIButtonClicked= false;
+	//}
 
 }

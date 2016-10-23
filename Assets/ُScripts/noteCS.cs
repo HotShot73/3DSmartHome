@@ -7,24 +7,26 @@ public class noteCS : MonoBehaviour {
 	public Text noteOutlineText;
 	private bool noteShown=true;
 	public Image backImage;
+	public GameObject button;
 	public void NoteButtonClicked ()
 	{
-		if (!noteShown) {
+		//if (!noteShown) {
 			noteText.gameObject.SetActive (true);
 			backImage.gameObject.SetActive (true);
+			button.SetActive (true);
 			//noteOutlineText.text= "Do below tasks in orders:\n 1- Enter the house\n 2- Use UI to turn on the lights\n 3- Use UI to turn on the airconditioner \n 4- Use UI to turn on the TV";
 			noteShown = true;
 			
 			
 			
 			
-		} else {
-			noteText.text = "";
+	//	} else {
+	//		noteText.text = "";
 			//noteOutlineText.text="";
-			noteShown = false;
-			noteText.gameObject.SetActive (false);
-			backImage.gameObject.SetActive (false);
-		}
+	//		noteShown = false;
+	//		noteText.gameObject.SetActive (false);
+		//	backImage.gameObject.SetActive (false);
+		//}
 	}
 		void Update(){
 			if(Scenarios.scenarioNumber=="1"){

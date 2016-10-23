@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using System.Threading;
@@ -24,6 +25,7 @@ public class Scenarios : MonoBehaviour {
 	public static float timeFanIsOn =0;
 	public GameObject messageContainer;
 	public GameObject ActionMessage;
+	public GameObject dialogueMessage;
 	private bool done1 = false;
 	private bool done2 = false;
 	private bool done3 = false;
@@ -42,9 +44,15 @@ public class Scenarios : MonoBehaviour {
 	public GameObject jalousie2;
 	public GameObject fan;
 	public GameObject TVOff;
+	public GameObject Dialogue;
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
+		int temp5 = Random.Range (1, 32);
+		print (temp5);
+		scenarioNumber = temp5.ToString ();
+		//print (scenarioNumber);
+		//scenarioNumber = temp.ToString ();
 	}
 	
 	// Update is called once per frame
@@ -64,7 +72,7 @@ public class Scenarios : MonoBehaviour {
 		if (fanIsOn) {
 			timeFanIsOn += Time.deltaTime;
 		}
-		message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+		// 
 		//print (scenarioNumber);
 		if (scenarioNumber == "1") {
 			//Scenario1 ();
@@ -77,8 +85,9 @@ public class Scenarios : MonoBehaviour {
 					myTimer -= Time.deltaTime;
 				} else {
 					duration = 3.0f;
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
-					message.text = "The lamp has been on for " + ((int)timeLightIsOn).ToString () + "seconds";
+					 
+					 dialogueMessage.GetComponent<Text>().text = "The lamp has been on for " + ((int)timeLightIsOn).ToString () + "seconds";
+					Dialogue.SetActive (true);
 					myTimer = 25;
 				}
 			}
@@ -87,8 +96,9 @@ public class Scenarios : MonoBehaviour {
 				if (duration > 0)
 					duration -= Time.deltaTime;
 				else {
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
-					message.text = "";
+					 
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
 					duration = -1;
 				}
 			}
@@ -103,15 +113,18 @@ public class Scenarios : MonoBehaviour {
 						duration = 3;
 						counter++;
 					}
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+					 
 					if (duration > 0) {
 						duration -= Time.deltaTime;
 						if (airConditionerIsOn)
-							message.text = "The air conditioner is on";
+							 dialogueMessage.GetComponent<Text>().text = "The air conditioner is on";
 						else
-							message.text = "The air conditioner is off";
-					} else
-						message.text = "";
+							 dialogueMessage.GetComponent<Text>().text = "The air conditioner is off";
+						Dialogue.SetActive (true);
+					} else {
+						 dialogueMessage.GetComponent<Text>().text = "";
+						Dialogue.SetActive (false);
+					}
 				}
 			} else {
 				myTimer = 15;
@@ -124,31 +137,33 @@ public class Scenarios : MonoBehaviour {
 			}
 			else {
 				if (counter == 1 && myTimer<=0) {
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+					 
 					myTimer = 10;
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+					 
 					if(jalousieIsOn)
-						message.text = "Windows are open";
+						 dialogueMessage.GetComponent<Text>().text = "Windows are open";
 					else
-						message.text = "Windows are close";
+						 dialogueMessage.GetComponent<Text>().text = "Windows are close";
+					Dialogue.SetActive (true);
 					counter++;
 					duration = 4;
 				}
 
 				if (counter == 2 && myTimer<=0) {
 					myTimer = 10;
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
-					message.text = "TV has been on for " + timeTVIsOn.ToString () + " seconds";
+					 
+					 dialogueMessage.GetComponent<Text>().text = "TV has been on for " + timeTVIsOn.ToString () + " seconds";
 					counter++;
 					duration = 4;
 				}
 				if (counter == 3 && myTimer <= 0) {
 					myTimer = -1;
-					message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+					 
 					if(airConditionerIsOn)
-						message.text = "The air conditioner is on";
+						 dialogueMessage.GetComponent<Text>().text = "The air conditioner is on";
 					else
-						message.text = "The air conditioner is off";
+						 dialogueMessage.GetComponent<Text>().text = "The air conditioner is off";
+					Dialogue.SetActive (true);
 					counter++;
 					duration = 4;
 				}
@@ -157,32 +172,38 @@ public class Scenarios : MonoBehaviour {
 				}
 				if (duration > 0)
 					duration -= Time.deltaTime;
-				else
-					message.text = "";
+				else {
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
+				}
 			}
 		}
 		if (scenarioNumber == "4") {
 			if (myTimer < -0.9f)
 				myTimer = 7;
-			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			 
 			if (myTimer <= 0) {
 				if (lightIsOn && TVIsOn && airConditionerIsOn) {
-					message.text = "The electricity usage is so high right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is so high right now";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 7;
 				}
 				if ((lightIsOn && TVIsOn && !airConditionerIsOn) || (lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && airConditionerIsOn)) {
-					message.text = "The electricity usage is high right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is high right now";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 7;
 				}
 				if ((lightIsOn && !TVIsOn && !airConditionerIsOn) || (!lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && !airConditionerIsOn)) {
-					message.text = "The electricity usage is low right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is low right now";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 7;
 				}
 				if ((!lightIsOn && !TVIsOn && !airConditionerIsOn)) {
-					message.text = "The electricity usage is nearly zero right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is nearly zero right now";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 7;
 				}
@@ -190,41 +211,48 @@ public class Scenarios : MonoBehaviour {
 				myTimer -= Time.deltaTime;
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "5") {
-			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			 
 			if (myTimer < -0.9f)
 				myTimer = 10;
 			if (myTimer > 0)
 				myTimer -= Time.deltaTime;
 			else {
-				message.text = "The room is on fire!!! run away!!!";
+				 dialogueMessage.GetComponent<Text>().text = "The room is on fire!!! run away!!!";
+				Dialogue.SetActive (true);
 			}
 		}
 		if (scenarioNumber == "6") {
 			if (myTimer < -0.9f)
 				myTimer = 10;
-			message = GameObject.FindGameObjectsWithTag ("Messages") [0].GetComponent<Text> ();
+			 
 			if (myTimer <= 0) {
 				if (lightIsOn && TVIsOn && airConditionerIsOn) {
-					message.text = "The electricity usage is nearly zero right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is nearly zero right now";
+					Dialogue.SetActive (true);
 					duration = 5;
 
 				}
 				if ((lightIsOn && TVIsOn && !airConditionerIsOn) || (lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && airConditionerIsOn)) {
-					message.text = "The electricity usage is low right now";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is low right now";
+					Dialogue.SetActive (true);
 					duration = 4;
 
 				}
 				if ((lightIsOn && !TVIsOn && !airConditionerIsOn) || (!lightIsOn && !TVIsOn && airConditionerIsOn) || (!lightIsOn && TVIsOn && !airConditionerIsOn)) {
-					message.text = "The electricity usage is high right now!";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is high right now!";
+					Dialogue.SetActive (true);
 					duration = 4;
 
 				}
 				if ((!lightIsOn && !TVIsOn && !airConditionerIsOn)) {
-					message.text = "The electricity usage is very high right now!";
+					 dialogueMessage.GetComponent<Text>().text = "The electricity usage is very high right now!";
+					Dialogue.SetActive (true);
 					duration = 4;
 
 				}
@@ -232,15 +260,18 @@ public class Scenarios : MonoBehaviour {
 				myTimer -= Time.deltaTime;
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "7") {
 			if (myTimer < -0.9f)
 				myTimer = 8;
 			if (myTimer <= 0) {
 				if (!jalousieIsOn) {
-					message.text = " Windows are open and this will cause in waste of energy.";
+					 dialogueMessage.GetComponent<Text>().text = " Windows are open and this will cause in waste of energy.";
+					Dialogue.SetActive (true);
 					myTimer = 8;
 					duration = 5;
 				}
@@ -249,8 +280,10 @@ public class Scenarios : MonoBehaviour {
 				myTimer -= Time.deltaTime;
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "8") {
 			
@@ -259,14 +292,17 @@ public class Scenarios : MonoBehaviour {
 			if (myTimer > 0)
 				myTimer -= Time.deltaTime;
 			else {
-				message.text = "The room is on fire!!! run away!!!";
+				 dialogueMessage.GetComponent<Text>().text = "The room is on fire!!! run away!!!";
+				Dialogue.SetActive (true);
 				myTimer = 8;
 				duration = 4;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "9") {
 			if (myTimer < -0.9f)
@@ -281,25 +317,31 @@ public class Scenarios : MonoBehaviour {
 					totalUsage += 150;
 				if (lightIsOn)
 					totalUsage += 100;
-				message.text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				 dialogueMessage.GetComponent<Text>().text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				Dialogue.SetActive (true);
 				duration = 4;
 				myTimer = -1;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "10") {
 			if (TVIsOn && counter==0) {
-				message.text = "The systems suggests you to close the window and turn off some of the lights";
+				 dialogueMessage.GetComponent<Text>().text = "The systems suggests you to close the window and turn off some of the lights";
+				Dialogue.SetActive (true);
 				duration = 4;
 				counter = 1;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 			if (!TVIsOn)
 				counter = 0;
 		}
@@ -316,62 +358,77 @@ public class Scenarios : MonoBehaviour {
 					totalUsage += 150;
 				if (lightIsOn)
 					totalUsage += 100;
-				message.text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				 dialogueMessage.GetComponent<Text>().text = "electricity usage is " + totalUsage.ToString() +" watts right now.";
+				Dialogue.SetActive (true);
 				duration = 4;
 				myTimer = 8;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "12") {
 			if (lightIsOn && duration<1.2f) {
-				message.text = "System suggests you to turn off the lights since it's day and the light level is quite alright";
+				 dialogueMessage.GetComponent<Text>().text = "System suggests you to turn off the lights since it's day and the light level is quite alright";
+				Dialogue.SetActive (true);
 				duration = 4;
 				done1 = true;
 			}
 			if (airConditionerIsOn && duration<1.2f) {
-				message.text = "System suggests you to turn off the air conditioner since the temperature is pleasant.";
+				 dialogueMessage.GetComponent<Text>().text = "System suggests you to turn off the air conditioner since the temperature is pleasant.";
+				Dialogue.SetActive (true);
 				duration = 4;
 				done1 = true;
 			}
 			if (jalousieIsOn && duration<1.2f) {
-				message.text = "System suggests you to close the window in order to prevent wasting of energy.";
+				 dialogueMessage.GetComponent<Text>().text = "System suggests you to close the window in order to prevent wasting of energy.";
+				Dialogue.SetActive (true);
 				duration = 4;
 				done1 = true;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "13") {
 			if (lightIsOn)
 				temp = true;
 			if (!lightIsOn && temp) {
-				message.text = "If you don't turn off the lights you will use 8KWh more electricity monthly.";
+				 dialogueMessage.GetComponent<Text>().text = "If you don't turn off the lights you will use 8KWh more electricity monthly.";
+				Dialogue.SetActive (true);
 				duration = 5;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "14") {
 			if (airConditionerIsOn) {
-				message.text = "Systems suggests you to turn the air conditioner on";
+				 dialogueMessage.GetComponent<Text>().text = "Systems suggests you to turn the air conditioner on";
+				Dialogue.SetActive (true);
 				duration = 5;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
-			else
-				message.text = "";
+			else {
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
+			}
 		}
 		if (scenarioNumber == "15") {
 			if (lightIsOn) {
 				if (myTimer <= 0) {
-					message.text = " System suggests you to turn on the lights";
+					 dialogueMessage.GetComponent<Text>().text = " System suggests you to turn on the lights";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 5;
 					counter = 1;
@@ -383,7 +440,8 @@ public class Scenarios : MonoBehaviour {
 				counter = 2;
 			}
 			else {
-				message.text = "";
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
 				duration = 6;
 				if(counter!=0)
 				myTimer = 5;
@@ -392,7 +450,8 @@ public class Scenarios : MonoBehaviour {
 		if (scenarioNumber == "16") {
 			if (!lightIsOn && temp) {
 				if (myTimer <= 0) {
-					message.text = " System suggests you to turn off the lights";
+					 dialogueMessage.GetComponent<Text>().text = " System suggests you to turn off the lights";
+					Dialogue.SetActive (true);
 					duration = 4;
 					myTimer = 5;
 					counter = 1;
@@ -407,7 +466,8 @@ public class Scenarios : MonoBehaviour {
 				counter = 2;
 			}
 			else {
-				message.text = "";
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
 				duration = 6;
 				if(counter!=0)
 					myTimer = 5;
@@ -425,6 +485,7 @@ public class Scenarios : MonoBehaviour {
 				}
 				}
 			ActionMessage.GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
+			Dialogue.SetActive (true);
 		}
 		if (scenarioNumber == "18") {
 			
@@ -434,6 +495,7 @@ public class Scenarios : MonoBehaviour {
 					counter = 1;
 				}
 				ActionMessage.GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
+
 			}
 		}
 		if (scenarioNumber == "19") {
@@ -447,6 +509,7 @@ public class Scenarios : MonoBehaviour {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I turn off the lights?";
+
 						myTimer = 8;
 						counter++;
 					} else {
@@ -454,6 +517,7 @@ public class Scenarios : MonoBehaviour {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn off the Air Conditioner?";
+
 							myTimer = 8;
 							counter++;
 						} else {
@@ -461,6 +525,7 @@ public class Scenarios : MonoBehaviour {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
 								ActionMessage.GetComponent<Text> ().text = "Shall I close the windows?";
+
 								myTimer = 8;
 								counter++;
 							}
@@ -477,6 +542,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "Weather is getting hot. Shall I turn on the fan?";
+
 					myTimer = 8;
 					counter++;
 				}
@@ -484,6 +550,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "Shall I turn on the Air Conditioner?";
+
 					myTimer = 8;
 					counter++;
 				}
@@ -491,6 +558,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "In order to save energy system suggests you to close the window. shall I close them?";
+
 					myTimer = 8;
 					counter++;
 				}
@@ -508,6 +576,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "The light level is quite sufficient. Shall I turn off the lights?";
+				
 					myTimer = 8;
 					counter++;
 				}
@@ -523,6 +592,7 @@ public class Scenarios : MonoBehaviour {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "The temperature is quite pleasant. Shall I turn the Air Conditioner off?";
+
 					myTimer = 8;
 					counter++;
 				}
@@ -542,6 +612,7 @@ public class Scenarios : MonoBehaviour {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I open the windows?";
+
 						myTimer = 8;
 						counter++;
 					} else {
@@ -549,6 +620,7 @@ public class Scenarios : MonoBehaviour {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
+
 							myTimer = 8;
 							counter++;
 						} else {
@@ -556,6 +628,7 @@ public class Scenarios : MonoBehaviour {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
 								ActionMessage.GetComponent<Text> ().text = "Shall I turn the Fan on?";
+
 								myTimer = 8;
 								counter++;
 							}
@@ -578,6 +651,7 @@ public class Scenarios : MonoBehaviour {
 						messageContainer.SetActive (true);
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I turn the fan on?";
+
 						myTimer = 8;
 						counter++;
 					} else {
@@ -585,6 +659,7 @@ public class Scenarios : MonoBehaviour {
 							messageContainer.SetActive (true);
 							isMessageContainerActive = true;
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
+
 							myTimer = 8;
 							counter++;
 						} else {
@@ -592,6 +667,7 @@ public class Scenarios : MonoBehaviour {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
 								ActionMessage.GetComponent<Text> ().text = "Shall I turn the lights on?";
+
 								myTimer = 8;
 								counter++;
 							}
@@ -634,7 +710,8 @@ public class Scenarios : MonoBehaviour {
 					AirConditioner.GetComponent<AudioSource>().Play();
 					airConditionerIsOn = true;
 					timeAirConditionerIsOn = 0;
-					message.text = "It was getting warm after closing the windows so system decided to turn the Air Conditioner on";
+					 dialogueMessage.GetComponent<Text>().text = "It was getting warm after closing the windows so system decided to turn the Air Conditioner on";
+
 					duration = 6;
 				}
 			}
@@ -642,7 +719,8 @@ public class Scenarios : MonoBehaviour {
 				duration -= Time.deltaTime;
 			} else {
 				duration = 6;
-				message.text = "";
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
 			}
 		}
 		if (scenarioNumber == "27") {
@@ -659,7 +737,8 @@ public class Scenarios : MonoBehaviour {
 					timeLightIsOn = 0;
 					duration = 5;
 					myTimer = 10;
-					message.text = "Light level is not enough therefore system decided to turn on the lights";
+					 dialogueMessage.GetComponent<Text>().text = "Light level is not enough therefore system decided to turn on the lights";
+					Dialogue.SetActive (true);
 					lightIsOn = true;
 					counter++;
 				} else {
@@ -669,7 +748,8 @@ public class Scenarios : MonoBehaviour {
 						timeTVIsOn = 0;
 						duration = 5;
 						myTimer = 10;
-						message.text = "The match between FC Barcelona and Real Madrid starts in 5 minutes!";
+						 dialogueMessage.GetComponent<Text>().text = "The match between FC Barcelona and Real Madrid starts in 5 minutes!";
+						Dialogue.SetActive (true);
 						counter++;
 					} else {
 						if (counter == 2) {
@@ -681,7 +761,8 @@ public class Scenarios : MonoBehaviour {
 							timeJalousieIsOn = 0;
 							duration = 5;
 							myTimer = 10;
-							message.text = "The weather is quite good outside therefore system decided to open the windows";
+							 dialogueMessage.GetComponent<Text>().text = "The weather is quite good outside therefore system decided to open the windows";
+							Dialogue.SetActive (true);
 							counter++;
 						}
 					}
@@ -690,7 +771,8 @@ public class Scenarios : MonoBehaviour {
 			if (duration > 0)
 				duration -= Time.deltaTime;
 			else {
-				message.text = "";
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
 			}
 		}
 		if (scenarioNumber == "28") {
@@ -723,9 +805,10 @@ public class Scenarios : MonoBehaviour {
 						timeLightIsOn = 0;
 						duration = 5;
 						myTimer = 10;
-						if (!lightIsOn)
-							message.text = "System decided to turn off the lights for better movie watching experience";
-					
+						if (!lightIsOn) {
+							 dialogueMessage.GetComponent<Text>().text = "System decided to turn off the lights for better movie watching experience";
+							Dialogue.SetActive (true);
+						}
 						counter++;
 					} else {
 						if (counter == 1) {
@@ -735,7 +818,8 @@ public class Scenarios : MonoBehaviour {
 							timeAirConditionerIsOn = 0;
 							duration = 5;
 							myTimer = 10;
-							message.text = "The weather is getting warm therefore system turned the Air Conditioner on!";
+							 dialogueMessage.GetComponent<Text>().text = "The weather is getting warm therefore system turned the Air Conditioner on!";
+							Dialogue.SetActive (true);
 							counter++;
 						} else {
 							if (counter == 2) {
@@ -747,7 +831,8 @@ public class Scenarios : MonoBehaviour {
 								timeJalousieIsOn = 0;
 								duration = 5;
 								myTimer = 10;
-								message.text = "It's quite noisy outside therefore system decided to close the windows";
+								 dialogueMessage.GetComponent<Text>().text = "It's quite noisy outside therefore system decided to close the windows";
+								Dialogue.SetActive (true);
 								counter++;
 							}
 						}
@@ -756,7 +841,8 @@ public class Scenarios : MonoBehaviour {
 				if (duration > 0)
 					duration -= Time.deltaTime;
 				else {
-					message.text = "";
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
 				}
 			}
 		}
@@ -774,12 +860,15 @@ public class Scenarios : MonoBehaviour {
 					lightIsOn = false;
 					timeLightIsOn = 0;
 					duration = 5;
-					message.text = "Light level is quite sufficient therefore system decided to turn off the lights";
+					 dialogueMessage.GetComponent<Text>().text = "Light level is quite sufficient therefore system decided to turn off the lights";
+					Dialogue.SetActive (true);
 				}
 				if (duration > 0)
 					duration -= Time.deltaTime;
-				else 	
-					message.text = "";
+				else {
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
+				}
 			}
 		}
 		if (scenarioNumber == "30") {
@@ -794,13 +883,16 @@ public class Scenarios : MonoBehaviour {
 					airConditionerIsOn = false;
 					timeAirConditionerIsOn = 0;
 					duration = 5;
-					message.text = "Weather is quite good. There is no need for Air Conditioner";
+					 dialogueMessage.GetComponent<Text>().text = "Weather is quite good. There is no need for Air Conditioner";
+					Dialogue.SetActive (true);
 
 				}
 				if (duration > 0)
 					duration -= Time.deltaTime;
-				else 	
-					message.text = "";
+				else {	
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
+				}
 			}
 		}
 		if (scenarioNumber == "31") {
@@ -823,8 +915,10 @@ public class Scenarios : MonoBehaviour {
 					timeLightIsOn = 0;
 					duration = 5;
 					myTimer = 10;
-					if (!lightIsOn)
-						message.text = "System decided to turn off the lights because the light level is quite sufficient";
+					if (!lightIsOn) {
+						 dialogueMessage.GetComponent<Text>().text = "System decided to turn off the lights because the light level is quite sufficient";
+						Dialogue.SetActive (true);
+					}
 
 					counter++;
 				} else {
@@ -834,7 +928,8 @@ public class Scenarios : MonoBehaviour {
 						timeTVIsOn = 0;
 						duration = 5;
 						myTimer = 10;
-						message.text = "Game of Thrones is on TV now!";
+						 dialogueMessage.GetComponent<Text>().text = "Game of Thrones is on TV now!";
+						Dialogue.SetActive (true);
 						counter++;
 					} else {
 						if (counter == 2) {
@@ -846,7 +941,8 @@ public class Scenarios : MonoBehaviour {
 							timeJalousieIsOn = 0;
 							duration = 5;
 							myTimer = 10;
-							message.text = "Weather is cold outside";
+							 dialogueMessage.GetComponent<Text>().text = "Weather is cold outside";
+							Dialogue.SetActive (true);
 							counter++;
 						}
 					}
@@ -855,7 +951,8 @@ public class Scenarios : MonoBehaviour {
 			if (duration > 0)
 				duration -= Time.deltaTime;
 			else {
-				message.text = "";
+				 dialogueMessage.GetComponent<Text>().text = "";
+				Dialogue.SetActive (false);
 			}
 		
 		}
@@ -874,7 +971,8 @@ public class Scenarios : MonoBehaviour {
 						fan.GetComponent<Animation> ().Play ();
 					duration = 5;
 					myTimer = 10;
-						message.text = "Weather is getting warm so system decided to turn on the fan";
+						 dialogueMessage.GetComponent<Text>().text = "Weather is getting warm so system decided to turn on the fan";
+						Dialogue.SetActive (true);
 
 					counter++;
 				} else {
@@ -887,7 +985,8 @@ public class Scenarios : MonoBehaviour {
 							timeJalousieIsOn = 0;
 							duration = 5;
 							myTimer = 10;
-							message.text = "Weather is pleasant outside so system decided to open the windows.";
+							 dialogueMessage.GetComponent<Text>().text = "Weather is pleasant outside so system decided to open the windows.";
+							Dialogue.SetActive (true);
 							counter++;
 					} else {
 						if (counter == 2) {
@@ -897,7 +996,8 @@ public class Scenarios : MonoBehaviour {
 								timeTVIsOn = 0;
 								duration = 5;
 								myTimer = 10;
-								message.text = "You are using so much electricity so system decided to turn the tv off!";
+								 dialogueMessage.GetComponent<Text>().text = "You are using so much electricity so system decided to turn the tv off!";
+								Dialogue.SetActive (true);
 							counter++;
 						}
 					}
@@ -907,7 +1007,8 @@ public class Scenarios : MonoBehaviour {
 				if (duration > 0)
 					duration -= Time.deltaTime;
 				else {
-					message.text = "";
+					 dialogueMessage.GetComponent<Text>().text = "";
+					Dialogue.SetActive (false);
 				}
 			}
 		}
