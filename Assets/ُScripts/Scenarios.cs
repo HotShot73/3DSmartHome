@@ -50,7 +50,10 @@ public class Scenarios : MonoBehaviour {
 		myTimer = -1;
 		int temp5 = Random.Range (1, 32);
 		print (temp5);
+		print(PlayerPrefs.GetInt("lastScenario"));
 		scenarioNumber = temp5.ToString ();
+		PlayerPrefs.SetInt ("lastScenario", temp5);
+
 		//print (scenarioNumber);
 		//scenarioNumber = temp.ToString ();
 	}
