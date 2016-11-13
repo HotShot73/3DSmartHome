@@ -26,6 +26,7 @@ public class Scenarios : MonoBehaviour {
 	public static float timeJalousieIsOn =0;
 	public static float timeFanIsOn =0;
 	public GameObject messageContainer;
+	public GameObject lastMessageContainer;
 	public GameObject ActionMessage;
 	public GameObject dialogueMessage;
 	private bool done1 = false;
@@ -55,7 +56,7 @@ public class Scenarios : MonoBehaviour {
 	private bool allDone = true;
 	[DllImport("__Internal")]
 	private static extern void Hello();
-
+	private bool chert = false;
 	[DllImport("__Internal")]
 	private static extern void HelloString(string str);
 
@@ -78,9 +79,9 @@ public class Scenarios : MonoBehaviour {
 			PlayerPrefs.SetInt("ScenarioNumber",0);
 		}
 		totalTimer = 0.0f;
-		if (PlayerPrefs.GetInt ("ScenarioNumber") == 0) {
-			HelloString (scenarioNumber);
-		}
+		//if (PlayerPrefs.GetInt ("ScenarioNumber") == 0) {
+		//	HelloString (scenarioNumber);
+		//}
 		//print (scenarioNumber);
 		//scenarioNumber = temp.ToString ();
 	}
@@ -96,11 +97,13 @@ public class Scenarios : MonoBehaviour {
 			allDone = true;
 				}
 		print(scenarioNumber);
-		if (totalTimer >= 20f && allDone) {
+		if (totalTimer >= 60f && allDone) {
 			lastTimer += Time.deltaTime;
 			if (PlayerPrefs.GetInt ("ScenarioNumber") == 2) {
+				lastMessageContainer.SetActive (true);
 				LastMessage.GetComponent<Text> ().text = "Get ready for the next scenario!";
 			} else {
+				lastMessageContainer.SetActive (true);
 				LastMessage.GetComponent<Text> ().text = "This part is over. Please click on the questionnaire link in order to fill out the questionnaire";
 			}
 			//SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
@@ -482,32 +485,36 @@ public class Scenarios : MonoBehaviour {
 			numberOfTasks = 1;
 			if (lightIsOn)
 				temp = true;
-			if (!lightIsOn && temp) {
+			if (!lightIsOn && temp && !chert) {
 				 dialogueMessage.GetComponent<Text>().text = "If you don't turn off the lights you will use 8KWh more electricity monthly.";
 				taskStates [0] = true;
 				Dialogue.SetActive (true);
 				duration = 5;
+				chert = true;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
 			else {
 				 dialogueMessage.GetComponent<Text>().text = "";
 				Dialogue.SetActive (false);
+				chert = false;
 			}
 		}
 		if (scenarioNumber == "14") {
 			numberOfTasks = 1;
-			if (airConditionerIsOn) {
+			if (airConditionerIsOn && !chert) {
 				 dialogueMessage.GetComponent<Text>().text = "Systems suggests you to turn the air conditioner on";
 				taskStates [1] = true;
 				Dialogue.SetActive (true);
 				duration = 5;
+				chert = true;
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
 			else {
 				 dialogueMessage.GetComponent<Text>().text = "";
 				Dialogue.SetActive (false);
+				chert = false;
 			}
 		}
 		if (scenarioNumber == "15") {
