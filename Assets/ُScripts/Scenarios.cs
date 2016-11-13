@@ -485,12 +485,14 @@ public class Scenarios : MonoBehaviour {
 			numberOfTasks = 1;
 			if (lightIsOn)
 				temp = true;
-			if (!lightIsOn && temp && !chert) {
+			if (!lightIsOn && temp) {
+				
 				 dialogueMessage.GetComponent<Text>().text = "If you don't turn off the lights you will use 8KWh more electricity monthly.";
 				taskStates [0] = true;
 				Dialogue.SetActive (true);
 				duration = 5;
 				chert = true;
+
 			}
 			if (duration > 0)
 				duration -= Time.deltaTime;
@@ -502,7 +504,7 @@ public class Scenarios : MonoBehaviour {
 		}
 		if (scenarioNumber == "14") {
 			numberOfTasks = 1;
-			if (airConditionerIsOn && !chert) {
+			if (airConditionerIsOn) {
 				 dialogueMessage.GetComponent<Text>().text = "Systems suggests you to turn the air conditioner on";
 				taskStates [1] = true;
 				Dialogue.SetActive (true);
