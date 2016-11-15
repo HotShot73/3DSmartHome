@@ -2,16 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ُScripts\Scenarios.cs">
     <Files>
-      <File FileName="Assets\ُScripts\Scenarios.cs" Line="32" Column="29" />
+      <File FileName="Assets\ُScripts\Scenarios.cs" Line="70" Column="24" />
       <File FileName="Assets\ُScripts\BackButton.js" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\JalousieOffButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\YesButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\JalousieOnButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\FanOnButton.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\FanOffButton.cs" Line="1" Column="1" />
-      <File FileName="Assets\ُScripts\ScenarioAssigner.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\UICloseButton.js" Line="1" Column="1" />
-      <File FileName="Assets\ُScripts\noteCS.cs" Line="1" Column="1" />
+      <File FileName="Assets\ُScripts\noteCS.cs" Line="33" Column="139" />
       <File FileName="Assets\ُScripts\NoteClose.cs" Line="1" Column="1" />
       <File FileName="Assets\ُScripts\cameraviewjs.js" Line="1" Column="1" />
     </Files>

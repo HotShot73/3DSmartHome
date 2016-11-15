@@ -67,7 +67,7 @@ public class Scenarios : MonoBehaviour {
 		print (temp5);
 		if (PlayerPrefs.GetInt ("ScenarioNumber") != 2) {
 			
-			scenarioNumber = "31";
+			scenarioNumber = "19";
 
 			PlayerPrefs.SetInt ("lastScenario", temp5);
 			PlayerPrefs.SetInt("ScenarioNumber",2);
