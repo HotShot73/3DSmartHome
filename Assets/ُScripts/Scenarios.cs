@@ -1,4 +1,5 @@
 ﻿
+
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -44,6 +45,7 @@ public class Scenarios : MonoBehaviour {
 	public ParticleSystem airconditioner;
 	public GameObject AirConditioner;
 	public AudioClip audioOn; 
+	public GameObject arrow;
 	public GameObject TV;
 	public GameObject jalousie1;
 	public GameObject jalousie2;
@@ -52,7 +54,9 @@ public class Scenarios : MonoBehaviour {
 	public GameObject Dialogue;
 	public GameObject LastMessage;
 	public float lastTimer=0;
+	private bool done = false;
 	private int sceneNumber=0;
+	private float endScenarioCounter = 0;
 	private bool allDone = true;
 	[DllImport("__Internal")]
 	private static extern void Hello();
@@ -63,13 +67,14 @@ public class Scenarios : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
+		Dialogue.SetActive (false);
 		int temp5 = Random.Range (1, 32);
 		print (temp5);
 		if (PlayerPrefs.GetInt ("ScenarioNumber") != 2) {
 			
-			scenarioNumber = "19";
+			scenarioNumber = "17";
 
-			PlayerPrefs.SetInt ("lastScenario", temp5);
+			PlayerPrefs.SetInt ("lastScenario", int.Parse(scenarioNumber));
 			PlayerPrefs.SetInt("ScenarioNumber",2);
 		} else {
 			if(PlayerPrefs.GetInt ("lastScenario")%2 == 0)
@@ -97,14 +102,15 @@ public class Scenarios : MonoBehaviour {
 			allDone = true;
 				}
 		print(scenarioNumber);
-		if (totalTimer >= 60f && allDone) {
+		if (totalTimer >= 50f && allDone) {
 			lastTimer += Time.deltaTime;
 			if (PlayerPrefs.GetInt ("ScenarioNumber") == 2) {
 				lastMessageContainer.SetActive (true);
 				LastMessage.GetComponent<Text> ().text = "Get ready for the next scenario!";
 			} else {
 				lastMessageContainer.SetActive (true);
-				LastMessage.GetComponent<Text> ().text = "This part is over. Please click on the questionnaire link in order to fill out the questionnaire";
+				LastMessage.GetComponent<Text> ().text = "This part is over. Please click on the questionnaire link below in order to fill out the questionnaire";
+				arrow.SetActive (true);
 			}
 			//SceneManager.LoadScene (SceneManager.GetActiveScene().buildIndex);
 		}
@@ -582,11 +588,20 @@ public class Scenarios : MonoBehaviour {
 				if (counter == 0) {
 					messageContainer.SetActive (true);
 					counter = 1;
-					taskStates [0] = true;
+					YesButton.hasClicked = false;
+					//if(YesButton.hasClicked)
+					//	done = true;
+					//taskStates [0] = true;
+					ActionMessage.GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
+					//Dialogue.SetActive (true);
 				}
 				}
-			ActionMessage.GetComponent<Text>().text ="Light level is not enough. Would you like to turn on the lights?";
-			Dialogue.SetActive (true);
+			if (YesButton.hasClicked == true && counter == 1)
+				done = true;
+			if (done && counter == 1) {
+				taskStates [0] = true;
+			}
+
 		}
 		if (scenarioNumber == "18") {
 			numberOfTasks = 1;
@@ -594,10 +609,18 @@ public class Scenarios : MonoBehaviour {
 				if (counter == 0) {
 					messageContainer.SetActive (true);
 					counter = 1;
-					taskStates [0] = true;
+					YesButton.hasClicked = false;
+					//if(YesButton.hasClicked)
+					//	done = true;
+					//taskStates [0] = true;
 				}
 				ActionMessage.GetComponent<Text>().text ="Air Conditioner is making a lot of noises. Would you like to turn it off?";
 
+			}
+			if (YesButton.hasClicked == true && counter == 1)
+				done = true;
+			if (done && counter == 1) {
+				taskStates [0] = true;
 			}
 		}
 		if (scenarioNumber == "19") {
@@ -613,7 +636,7 @@ public class Scenarios : MonoBehaviour {
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I turn off the lights?";
 						taskStates [0] = true;
-
+						YesButton.hasClicked = false;
 						myTimer = 8;
 						counter++;
 					} else {
@@ -623,19 +646,27 @@ public class Scenarios : MonoBehaviour {
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn off the Air Conditioner?";
 							taskStates [1] = true;
 							myTimer = 8;
+							YesButton.hasClicked = false;
 							counter++;
 						} else {
 							if (counter == 2 && !isMessageContainerActive) {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
 								ActionMessage.GetComponent<Text> ().text = "Shall I close the windows?";
-								taskStates [2] = true;
+								//taskStates [2] = true;
+								YesButton.hasClicked = false;
 								myTimer = 8;
 								counter++;
+
 							}
 						}
 					}
 				}
+			}
+			if(YesButton.hasClicked && counter == 3)
+				done = true;
+			if (done) {
+				taskStates [2] = true;
 			}
 		}
 		if (scenarioNumber == "20") {
@@ -648,7 +679,7 @@ public class Scenarios : MonoBehaviour {
 					isMessageContainerActive = true;
 					taskStates [0] = true;
 					ActionMessage.GetComponent<Text> ().text = "Weather is getting hot. Shall I turn on the fan?";
-
+					YesButton.hasClicked = false;
 					myTimer = 8;
 					counter++;
 				}
@@ -657,22 +688,28 @@ public class Scenarios : MonoBehaviour {
 					isMessageContainerActive = true;
 					taskStates [1] = true;
 					ActionMessage.GetComponent<Text> ().text = "Shall I turn on the Air Conditioner?";
-
+					YesButton.hasClicked = false;
 					myTimer = 8;
 					counter++;
 				}
 				if (counter == 2 && !isMessageContainerActive) {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					taskStates [2] = true;
+					//taskStates [2] = true;
+					YesButton.hasClicked = false;
 					ActionMessage.GetComponent<Text> ().text = "In order to save energy system suggests you to close the window. shall I close them?";
-
+					done = true;
 					myTimer = 8;
 					counter++;
 				}
 			} else
 				if(!isMessageContainerActive)
 					myTimer -= Time.deltaTime;
+			if (YesButton.hasClicked && counter == 3)
+				done = true;
+			if (done && counter == 3) {
+				taskStates [2] = true;
+			}
 		}
 		if (scenarioNumber == "21") {
 			numberOfTasks = 1;
@@ -683,13 +720,18 @@ public class Scenarios : MonoBehaviour {
 					myTimer -= Time.deltaTime;
 				else {
 					messageContainer.SetActive (true);
-					taskStates [0] = true;
+					//taskStates [0] = true;
 					isMessageContainerActive = true;
 					ActionMessage.GetComponent<Text> ().text = "The light level is quite sufficient. Shall I turn off the lights?";
-				
+					YesButton.hasClicked = false;
 					myTimer = 8;
 					counter++;
 				}
+			}
+			if (YesButton.hasClicked && counter == 1)
+				done = true;
+			if (done && counter == 1) {
+				taskStates [0] = true;
 			}
 		}
 		if (scenarioNumber == "22") {
@@ -702,12 +744,17 @@ public class Scenarios : MonoBehaviour {
 				else {
 					messageContainer.SetActive (true);
 					isMessageContainerActive = true;
-					taskStates [0] = true;
+					//taskStates [0] = true;
 					ActionMessage.GetComponent<Text> ().text = "The temperature is quite pleasant. Shall I turn the Air Conditioner off?";
-
+					YesButton.hasClicked = false;
 					myTimer = 8;
 					counter++;
 				}
+			}
+			if (YesButton.hasClicked && counter == 1)
+				done = true;
+			if (done && counter == 1) {
+				taskStates [0] = true;
 			}
 		}
 		if (scenarioNumber == "23") {
@@ -726,7 +773,7 @@ public class Scenarios : MonoBehaviour {
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I open the windows?";
 						taskStates [0] = true;
-
+						YesButton.hasClicked = false;
 						myTimer = 8;
 						counter++;
 					} else {
@@ -735,6 +782,7 @@ public class Scenarios : MonoBehaviour {
 							isMessageContainerActive = true;
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
 							taskStates [1] = true;
+							YesButton.hasClicked = false;
 							myTimer = 8;
 							counter++;
 						} else {
@@ -742,13 +790,19 @@ public class Scenarios : MonoBehaviour {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
 								ActionMessage.GetComponent<Text> ().text = "Shall I turn the Fan on?";
-								taskStates [2] = true;
+								//taskStates [2] = true;
+								YesButton.hasClicked = false;
 								myTimer = 8;
 								counter++;
 							}
 						}
 					}
 				}
+			}
+			if (YesButton.hasClicked && counter == 3)
+				done = true;
+			if (done && counter == 3) {
+				taskStates [2] = true;
 			}
 		}
 		if (scenarioNumber == "24") {
@@ -767,7 +821,7 @@ public class Scenarios : MonoBehaviour {
 						isMessageContainerActive = true;
 						ActionMessage.GetComponent<Text> ().text = "Shall I turn the fan on?";
 						taskStates [0] = true;
-
+						YesButton.hasClicked = false;
 						myTimer = 8;
 						counter++;
 					} else {
@@ -776,20 +830,27 @@ public class Scenarios : MonoBehaviour {
 							isMessageContainerActive = true;
 							ActionMessage.GetComponent<Text> ().text = "Shall I turn the Air Conditioner on?";
 							taskStates [1] = true;
+							YesButton.hasClicked = false;
 							myTimer = 8;
 							counter++;
 						} else {
 							if (counter == 2) {
 								messageContainer.SetActive (true);
 								isMessageContainerActive = true;
+								YesButton.hasClicked = false;
 								ActionMessage.GetComponent<Text> ().text = "Shall I turn the lights on?";
-								taskStates [2] = true;
+								//taskStates [2] = true;
 								myTimer = 8;
 								counter++;
 							}
 						}
 					}
 				}
+			}
+			if (YesButton.hasClicked && counter == 3)
+				done = true;
+			if (done && counter == 3) {
+				taskStates [2] = true;
 			}
 		}
 		if (scenarioNumber == "25") {
@@ -806,8 +867,10 @@ public class Scenarios : MonoBehaviour {
 				light2b.SetActive (true);
 				timeLightIsOn = 0;
 				lightIsOn = true;
+				YesButton.hasClicked = false;
 
 			}
+
 		}
 		if (scenarioNumber == "26") {
 			numberOfTasks = 1;
@@ -828,6 +891,7 @@ public class Scenarios : MonoBehaviour {
 					AirConditioner.GetComponent<AudioSource>().Play();
 					airConditionerIsOn = true;
 					timeAirConditionerIsOn = 0;
+					YesButton.hasClicked = false;
 					 dialogueMessage.GetComponent<Text>().text = "It was getting warm after closing the windows so system decided to turn the Air Conditioner on";
 					taskStates [0] = true;
 					duration = 6;
@@ -840,6 +904,7 @@ public class Scenarios : MonoBehaviour {
 				 dialogueMessage.GetComponent<Text>().text = "";
 				Dialogue.SetActive (false);
 			}
+
 		}
 		if (scenarioNumber == "27") {
 			numberOfTasks = 3;

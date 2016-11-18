@@ -14,12 +14,14 @@ public class YesButton : MonoBehaviour {
 	public GameObject jalousie1;
 	public GameObject jalousie2;
 	public GameObject fan;
+	public static bool hasClicked=false;
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 
 	public void OnButtonClicked(){
+		hasClicked = true;
 		if (Scenarios.scenarioNumber == "17") {
 			light1a.SetActive (true);
 			light1b.SetActive (true);
