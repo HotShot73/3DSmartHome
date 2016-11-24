@@ -67,12 +67,28 @@ public class Scenarios : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		myTimer = -1;
+		  windowIsOpen = false;
+		  airConditionerIsOn = false;
+		  TVIsOn = false;
+		  lightIsOn = false;
+		  jalousieIsOn = false;
+		  fanIsOn = false;
+		  timeWindowIsOpen =0;
+		  timeTVIsOn = 0;
+		  timeAirConditionerIsOn = 0;
+		  timeLightIsOn = 0;
+		  timeJalousieIsOn =0;
+		  timeFanIsOn =0;
+		numberOfTimes=0;
+		totalTimer=0.0f;
+		duration = -1.0f;
+		counter=0;
 		Dialogue.SetActive (false);
 		int temp5 = Random.Range (1, 32);
 		print (temp5);
 		if (PlayerPrefs.GetInt ("ScenarioNumber") != 2) {
 			
-			scenarioNumber = "17";
+			scenarioNumber = "27";
 
 			PlayerPrefs.SetInt ("lastScenario", int.Parse(scenarioNumber));
 			PlayerPrefs.SetInt("ScenarioNumber",2);
@@ -84,6 +100,7 @@ public class Scenarios : MonoBehaviour {
 			PlayerPrefs.SetInt("ScenarioNumber",0);
 		}
 		totalTimer = 0.0f;
+		myTimer = -1;
 		//if (PlayerPrefs.GetInt ("ScenarioNumber") == 0) {
 		//	HelloString (scenarioNumber);
 		//}
@@ -1167,7 +1184,7 @@ public class Scenarios : MonoBehaviour {
 			}
 
 			else {
-				
+					print ("fuck you");
 					if (counter == 0) {
 						fan.GetComponent<Animation> ().Play ();
 					duration = 5;

@@ -38,7 +38,7 @@ function UIbuttonclicked () {
 		LightButton.SetActive(true);
 		JalousieButton.SetActive(true);
 		Button.SetActive(true);
-		//FanButton.SetActive(true);
+		FanButton.SetActive(true);
 		thisButton.SetActive(false);
 		//UIBackgroundImage.SetActive(true);
 		UIButtonclicked=true;
